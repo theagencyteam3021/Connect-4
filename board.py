@@ -96,7 +96,7 @@ class Board:
         xValues = []
         for point in points:
             xValues.append(point[0])
-        xValues.sort
+        xValues.sort()
         sortedList = [None] * len(xValues)
         for val in xValues:
             for point in points:
