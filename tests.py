@@ -18,3 +18,11 @@ image = Image.open("/content/WIN_20240909_18_06_29_Pro.jpg")
 from PIL import Image
 
 image = Image.open("/content/WIN_20240909_18_06_29_Pro.jpg")
+
+###
+
+def package(results):
+  formattedList = []
+  for result in results[0].predictions:
+    formattedList.append([result.x, result.y, result.class_name])
+  return formattedList
