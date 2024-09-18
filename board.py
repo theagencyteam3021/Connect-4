@@ -3,8 +3,8 @@ from point import Point
 
 
 #idk what the image res/dimentions are 
-imageXWidth = 500
-imageYHeight = 500
+imageXWidth = 1920
+imageYHeight = 1080
 
 class Board:
     def __init__(self, pointList):
