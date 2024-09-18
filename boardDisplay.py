@@ -1,6 +1,5 @@
-#does not work as intended
+# shows the board with the coords provided by object detection
 from board import Board
-# Example file showing a basic pygame "game loop"
 import pygame
 
 # pygame setup
@@ -23,20 +22,18 @@ while running:
             running = False
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
+    screen.fill("black")
 
     # RENDER YOUR GAME HERE
 
     for row in array:
         for peice in row:
             if peice[2] == 'Red':
-                pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(peice[0], peice[1], 10, 10))
+                pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(peice[0], peice[1], 25, 25))
             elif peice[2] == 'Yellow':
-                pygame.draw.rect(screen, (255, 255, 0), pygame.Rect(peice[0], peice[1], 10, 10))
+                pygame.draw.rect(screen, (255, 255, 0), pygame.Rect(peice[0], peice[1], 25, 25))
             else:
-                pygame.draw.rect(screen, (100, 100, 100), (pygame.Rect(peice[0], peice[1], 2, 2)))
-                print(f"drew grey square at ({peice[0]}, {peice[1]})")
-    pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(500, 500, 20, 20))
+                pygame.draw.rect(screen, (100, 100, 100), pygame.Rect(peice[0], peice[1], 25, 25))
 
 
 
