@@ -1,8 +1,6 @@
 from line import Line
 from point import Point
 
-
-#idk what the image res/dimentions are 
 imageXWidth = 1920
 imageYHeight = 1080
 
