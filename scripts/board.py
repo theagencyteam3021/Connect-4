@@ -1,5 +1,5 @@
-from line import Line
-from point import Point
+from scripts.line import Line
+from scripts.point import Point
 
 imageXWidth = 1920
 imageYHeight = 1080

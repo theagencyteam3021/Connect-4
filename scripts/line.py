@@ -1,4 +1,4 @@
-from point import Point
+from scripts.point import Point
 
 class Line:
     def __init__(self, point, slope="infinity"):

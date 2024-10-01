@@ -1,5 +1,5 @@
 # shows the board with the coords provided by object detection
-from board import Board
+from scripts.board import Board
 import pygame
 
 # pygame setup
