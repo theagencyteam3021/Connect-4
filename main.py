@@ -1,6 +1,6 @@
-from board import Board
+from scripts.board import Board
 
-from utils import coordFormatFromPredictions, formatOnlyColourVals
+from scripts.utils import coordFormatFromPredictions, formatOnlyColourVals
 
 fakeArray = [
   [5, 5, ""], [5, 10, " "], [5, 15, " "], [5, 20, " "], [5, 25, " "], [5, 30, " "],
