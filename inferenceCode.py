@@ -1,6 +1,6 @@
 import inference
 model = inference.get_model("connect4-lxv2j/2", "fxXBp7IHZMUOlxGJbueP")
-results = model.infer(image="/content/WIN_20240909_18_06_29_Pro.jpg")
+results = model.infer(image="/webcam_image.jpg")
 
 ###
 results[0].predictions
@@ -12,12 +12,12 @@ for result in results[0].predictions:
 ###
 from PIL import Image
 
-image = Image.open("/content/WIN_20240909_18_06_29_Pro.jpg")
+image = Image.open("/webcam_image.jpg")
 
 ###
 from PIL import Image
 
-image = Image.open("/content/WIN_20240909_18_06_29_Pro.jpg")
+image = Image.open("/webcam_image.jpg")
 
 ###
 
