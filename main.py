@@ -9,10 +9,20 @@ import inference
 
 # from PIL import Image
 
-imageCapture()
+# retakes photo until 42 detections are made
+isFirstTry = False
 
-model = inference.get_model("connect4-lxv2j/2", "fxXBp7IHZMUOlxGJbueP")
-results = model.infer(image="/webcam_image.jpg")
+while len(results) != 42:
+
+    if not isFirstTry:
+        print(f"Retaking photo {len(results)} spots detected.")
+    else:
+        isFirstTry = False
+
+    imageCapture()
+
+    model = inference.get_model("connect4-lxv2j/2", "fxXBp7IHZMUOlxGJbueP")
+    results = model.infer(image="/webcam_image.jpg")
 
 array = coordFormatFromPredictions(results)
 
