@@ -31,5 +31,3 @@ def imageCapture():
         cv.imwrite("webcam_photo.jpg", frame)
 
     capture.release()
-
-imageCapture()
