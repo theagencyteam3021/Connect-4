@@ -25,6 +25,8 @@ def imageCapture():
     if not capture.isOpened():
         print("webcam error")
 
+    capture.set(cv.CAP_PROP_FOURCC,cv.VideoWriter_fourcc('M','J','P','G'))
+
     ret, frame = capture.read()
 
     if ret:
