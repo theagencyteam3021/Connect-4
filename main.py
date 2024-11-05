@@ -4,6 +4,8 @@ from scripts.utils import coordFormatFromPredictions, formatOnlyColourVals, imag
 
 from visualization.gridBoardTest import GridBoardDisplay
 
+from PIL import Image
+
 import inference
 
 
@@ -12,8 +14,10 @@ import inference
 # retakes photo until 42 detections are made
 isFirstTry = False
 
+imageCapture()
+image = Image.open("/webcam_image.jpg")
 model = inference.get_model("connect4-lxv2j/2", "fxXBp7IHZMUOlxGJbueP")
-results = model.infer(image="/webcam_image.jpg")
+results = model.infer(image=image)
 
 while len(results) != 42:
 
@@ -23,6 +27,8 @@ while len(results) != 42:
         isFirstTry = False
 
     imageCapture()
+    image = Image.open("/webcam_image.jpg")
+    results = model.infer(image=image)
 
 array = coordFormatFromPredictions(results)
 
