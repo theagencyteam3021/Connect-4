@@ -15,7 +15,7 @@ import inference
 isFirstTry = False
 
 imageCapture()
-image = Image.open("/webcam_image.jpg")
+image = Image.open("webcam_photo.jpg")
 model = inference.get_model("connect4-lxv2j/2", "fxXBp7IHZMUOlxGJbueP")
 results = model.infer(image=image)
 
@@ -27,7 +27,7 @@ while len(results) != 42:
         isFirstTry = False
 
     imageCapture()
-    image = Image.open("/webcam_image.jpg")
+    image = Image.open("webcam_photo.jpg")
     results = model.infer(image=image)
 
 array = coordFormatFromPredictions(results)
