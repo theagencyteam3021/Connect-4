@@ -71,8 +71,9 @@ class Board:
             rightEnd = self.edgeFinder('right')[i]
             line = Line.frompoints(Point(leftEnd[0],leftEnd[1]), Point(rightEnd[0], rightEnd[1]))
             row = self.sortByX(self.findClosest(line, 7))
-            row.reverse()
+            # row.reverse()
             finishedMatrix.append(row)
+            finishedMatrix.reverse()
         return finishedMatrix
     
     # sorts in desending pixel order(asending height on screen)
