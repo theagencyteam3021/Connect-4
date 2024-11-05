@@ -73,7 +73,6 @@ class Board:
             row = self.sortByX(self.findClosest(line, 7))
             # row.reverse()
             finishedMatrix.append(row)
-            finishedMatrix.reverse()
         return finishedMatrix
     
     # sorts in desending pixel order(asending height on screen)

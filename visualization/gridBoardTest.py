@@ -11,6 +11,7 @@ class GridBoardDisplay():
         self.SCREEN_HEIGHT = 650
         self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
         self.array = array
+        self.array.reverse()
     
     def run(self):
         running = True
