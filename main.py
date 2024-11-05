@@ -19,7 +19,7 @@ image = Image.open("webcam_photo.jpg")
 model = inference.get_model("connect4-lxv2j/2", "fxXBp7IHZMUOlxGJbueP")
 results = model.infer(image=image)
 
-while len(results) != 42:
+while len(results[0]) != 42:
 
     if not isFirstTry:
         print(f"Retaking photo {len(results)} spots detected.")
