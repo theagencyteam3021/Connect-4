@@ -4,6 +4,8 @@ from scripts.utils import coordFormatFromPredictions, formatOnlyColourVals, imag
 
 from visualization.gridBoardTest import GridBoardDisplay
 
+from alg.connect_4_alg_stolen import pick_best_move
+
 from PIL import Image
 
 import inference
@@ -42,6 +44,12 @@ colorOnlyMatrix = formatOnlyColourVals(matrix)
                         
 disp = GridBoardDisplay(colorOnlyMatrix)
 disp.run()
+
+print(pick_best_move(colorOnlyMatrix, 1))
+
+
+
+
 
 
 
