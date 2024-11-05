@@ -45,6 +45,7 @@ colorOnlyMatrix = formatOnlyColourVals(matrix)
 disp = GridBoardDisplay(colorOnlyMatrix)
 disp.run()
 
+print(colorOnlyMatrix)
 print(pick_best_move(colorOnlyMatrix, 1))
 
 
