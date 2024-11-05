@@ -174,33 +174,26 @@ def get_valid_locations(board):
 
 def pick_best_move(board, piece):
 
-	valid_locations = get_valid_locations(board)
-	best_score = -10000
-	best_col = random.choice(valid_locations)
-	for col in valid_locations:
-		row = get_next_open_row(board, col)
-		temp_board = board.copy()
-		drop_piece(temp_board, row, col, piece)
-		score = score_position(temp_board, piece)
-		if score > best_score:
-			best_score = score
-			best_col = col
+    col, minimax_score = minimax(board, 5, -math.inf, math.inf, True)
 
-	return best_col
+    # if not (is_valid_location(board, col)):
+    #     print("invalid location attempted")
+		
+    return col
 
-def draw_board(board):
-	for c in range(COLUMN_COUNT):
-		for r in range(ROW_COUNT):
-			pygame.draw.rect(screen, BLUE, (c*SQUARESIZE, r*SQUARESIZE+SQUARESIZE, SQUARESIZE, SQUARESIZE))
-			pygame.draw.circle(screen, BLACK, (int(c*SQUARESIZE+SQUARESIZE/2), int(r*SQUARESIZE+SQUARESIZE+SQUARESIZE/2)), RADIUS)
+# def draw_board(board):
+# 	for c in range(COLUMN_COUNT):
+# 		for r in range(ROW_COUNT):
+# 			pygame.draw.rect(screen, BLUE, (c*SQUARESIZE, r*SQUARESIZE+SQUARESIZE, SQUARESIZE, SQUARESIZE))
+# 			pygame.draw.circle(screen, BLACK, (int(c*SQUARESIZE+SQUARESIZE/2), int(r*SQUARESIZE+SQUARESIZE+SQUARESIZE/2)), RADIUS)
 	
-	for c in range(COLUMN_COUNT):
-		for r in range(ROW_COUNT):		
-			if board[r][c] == PLAYER_PIECE:
-				pygame.draw.circle(screen, RED, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
-			elif board[r][c] == AI_PIECE: 
-				pygame.draw.circle(screen, YELLOW, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
-	pygame.display.update()
+# 	for c in range(COLUMN_COUNT):
+# 		for r in range(ROW_COUNT):		
+# 			if board[r][c] == PLAYER_PIECE:
+# 				pygame.draw.circle(screen, RED, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
+# 			elif board[r][c] == AI_PIECE: 
+# 				pygame.draw.circle(screen, YELLOW, (int(c*SQUARESIZE+SQUARESIZE/2), height-int(r*SQUARESIZE+SQUARESIZE/2)), RADIUS)
+# 	pygame.display.update()
 
 # board = create_board()
 # print_board(board)
