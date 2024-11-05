@@ -12,6 +12,9 @@ import inference
 # retakes photo until 42 detections are made
 isFirstTry = False
 
+model = inference.get_model("connect4-lxv2j/2", "fxXBp7IHZMUOlxGJbueP")
+results = model.infer(image="/webcam_image.jpg")
+
 while len(results) != 42:
 
     if not isFirstTry:
@@ -20,9 +23,6 @@ while len(results) != 42:
         isFirstTry = False
 
     imageCapture()
-
-    model = inference.get_model("connect4-lxv2j/2", "fxXBp7IHZMUOlxGJbueP")
-    results = model.infer(image="/webcam_image.jpg")
 
 array = coordFormatFromPredictions(results)
 
@@ -33,7 +33,7 @@ matrix = board.findMatrix()
 print(matrix)
 
 colorOnlyMatrix = formatOnlyColourVals(matrix)
-
+                        
 disp = GridBoardDisplay(colorOnlyMatrix)
 disp.run()
 
