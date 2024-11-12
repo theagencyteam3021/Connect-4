@@ -11,7 +11,7 @@ class TerminalBoard():
             self.array = sampleArray
         else:
             self.array = array
-        # self.array.reverse()
+            self.array = list(reversed(array))
     
     def printBoard(self):
         for row in range(6):
