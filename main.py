@@ -8,6 +8,8 @@ from scripts.TerminalDisplay import TerminalBoard
 
 from alg.connect_4_alg_stolen import pick_best_move
 
+import time
+
 import numpy as np
 
 import pygame
@@ -51,6 +53,8 @@ def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
 
         image = Image.open(file)
         results = model.infer(image=image)
+
+        time.sleep(0.5)
     capture.release()
     return results
 
