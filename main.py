@@ -62,8 +62,8 @@ if __name__ == "__main__":
 
         print(f"Robot's move: column {pick_best_move(np.array(colorOnlyMatrix), 1) + 1}")
 
-        for t in threads:
-            t.join()
+        # for t in threads:
+        #     t.join()
 
         print("Main thread: All threads finished")
         should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")
