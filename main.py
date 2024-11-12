@@ -49,6 +49,8 @@ if __name__ == "__main__":
     # print(matrix)
     colorOnlyMatrix = formatOnlyColourVals(matrix)
 
+    colorOnlyMatrix = np.array(colorOnlyMatrix)
+
 
     threads = []
     t = threading.Thread(target=worker)
