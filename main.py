@@ -38,31 +38,36 @@ def worker():
         
 if __name__ == "__main__":
 
-    results = getPredictionsUntilValid()
+    should_loop = ""
 
-    array = coordFormatFromPredictions(results)
+    while  should_loop != "quit" and should_loop != "q":
+        results = getPredictionsUntilValid()
 
-    board = Board(array)
+        array = coordFormatFromPredictions(results)
 
-    matrix = board.findMatrix()
+        board = Board(array)
 
-    # print(matrix)
-    colorOnlyMatrix = formatOnlyColourVals(matrix)
+        matrix = board.findMatrix()
 
-    # colorOnlyMatrix = np.array(colorOnlyMatrix)
+        # print(matrix)
+        colorOnlyMatrix = formatOnlyColourVals(matrix)
+
+        # colorOnlyMatrix = np.array(colorOnlyMatrix)
 
 
-    threads = []
-    t = threading.Thread(target=worker)
-    threads.append(t)
-    t.start()
+        threads = []
+        t = threading.Thread(target=worker)
+        threads.append(t)
+        t.start()
 
-    print(pick_best_move(np.array(colorOnlyMatrix), 1))
+        print(f"Robot's move: column {pick_best_move(np.array(colorOnlyMatrix), 1) + 1}")
 
-    for t in threads:
-        t.join()
+        for t in threads:
+            t.join()
 
-    print("Main thread: All threads finished")
+        print("Main thread: All threads finished")
+        should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")
+
 
 
 
