@@ -8,6 +8,8 @@ from alg.connect_4_alg_stolen import pick_best_move
 
 import numpy as np
 
+import pygame
+
 import threading
 
 from PIL import Image
@@ -32,11 +34,16 @@ def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
     return results
 
 def worker():
-        disp = GridBoardDisplay(colorOnlyMatrix)
+        disp = GridBoardDisplay(screen, colorOnlyMatrix)
         disp.run()
 
         
 if __name__ == "__main__":
+
+    SCREEN_WIDTH = 750
+    SCREEN_HEIGHT = 650
+
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     should_loop = ""
 

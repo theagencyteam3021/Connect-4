@@ -4,11 +4,12 @@ sampleArray = [[1, 1, 1, 2, 1, 2, 2], [1, 1, 2, 1, 2, 2, 1], [1, 2, 1, 1, 2, 1, 
 
 
 class GridBoardDisplay():
-    def __init__(self, array=sampleArray) -> None:
+    def __init__(self, screenSurface, array=sampleArray) -> None:
         pygame.init()
         self.SCREEN_WIDTH = 750
         self.SCREEN_HEIGHT = 650
-        self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
+        self.screen = screenSurface
+        # self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
         self.array = array
         self.array.reverse()
     
