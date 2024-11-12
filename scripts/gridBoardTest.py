@@ -35,7 +35,6 @@ class GridBoardDisplay():
             if stop():
                 break
 
-        pygame.quit()
 
 
 # this is just output copy pasted from main
