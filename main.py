@@ -81,12 +81,15 @@ if __name__ == "__main__":
 
 
         should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")
-        
-    pygame.quit()        # for t in threads:
-        #     t.join()
 
-        # print("Main thread: All threads finished")
-        
+
+    stopThreads = True
+
+    for t in threads:
+        t.join()
+    print("Main thread: All threads finished")
+
+    pygame.quit()
 
 
 

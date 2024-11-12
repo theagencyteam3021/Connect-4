@@ -23,5 +23,5 @@ class TerminalBoard():
                 else:
                     print("\033[38;5;244m●\033[0m", end=" ")
             print()
-board = TerminalBoard()
-board.printBoard()
+# board = TerminalBoard()
+# board.printBoard()
