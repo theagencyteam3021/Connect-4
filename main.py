@@ -33,9 +33,10 @@ def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
         results = model.infer(image=image)
     return results
 
-def worker():
+def worker(stop):
         disp = GridBoardDisplay(screen, colorOnlyMatrix)
-        disp.run()
+        disp.run(stop)
+
 
         
 if __name__ == "__main__":
@@ -63,7 +64,8 @@ if __name__ == "__main__":
 
 
         threads = []
-        t = threading.Thread(target=worker)
+        stopThreads = False
+        t = threading.Thread(target=worker, args =(lambda : stopThreads, ))
         threads.append(t)
         t.start()
 
@@ -74,6 +76,8 @@ if __name__ == "__main__":
 
         print("Main thread: All threads finished")
         should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")
+        stopThreads = True
+        
 
 
 

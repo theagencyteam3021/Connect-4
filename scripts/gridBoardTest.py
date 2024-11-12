@@ -13,7 +13,7 @@ class GridBoardDisplay():
         self.array = array
         self.array.reverse()
     
-    def run(self):
+    def run(self, stop):
         running = True
         while running:
             self.screen.fill((0, 0, 0))
@@ -32,6 +32,8 @@ class GridBoardDisplay():
                     running = False
 
             pygame.display.update()
+            if stop():
+                break
 
         pygame.quit()
 
