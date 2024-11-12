@@ -4,6 +4,8 @@ from scripts.utils import coordFormatFromPredictions, formatOnlyColourVals, imag
 
 from scripts.gridBoardTest import GridBoardDisplay
 
+from scripts.TerminalDisplay import TerminalBoard
+
 from alg.connect_4_alg_stolen import pick_best_move
 
 import numpy as np
@@ -71,6 +73,9 @@ if __name__ == "__main__":
         t = threading.Thread(target=worker, args =(lambda : stopThreads, ))
         threads.append(t)
         t.start()
+
+        displayInCLI = TerminalBoard(colorOnlyMatrix)
+        displayInCLI.printBoard()
 
         print(f"Robot's move: column {pick_best_move(np.array(colorOnlyMatrix), 1) + 1}")
 
