@@ -49,7 +49,7 @@ if __name__ == "__main__":
     # print(matrix)
     colorOnlyMatrix = formatOnlyColourVals(matrix)
 
-    colorOnlyMatrix = np.array(colorOnlyMatrix)
+    # colorOnlyMatrix = np.array(colorOnlyMatrix)
 
 
     threads = []
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     threads.append(t)
     t.start()
 
-    print(pick_best_move(colorOnlyMatrix, 1))
+    print(pick_best_move(np.array(colorOnlyMatrix), 1))
 
     for t in threads:
         t.join()
@@ -68,8 +68,7 @@ if __name__ == "__main__":
 
 
 
-# sampleArray = [[1, 1, 1, 2, 1, 2, 2], [1, 1, 2, 1, 2, 2, 1], [1, 2, 1, 1, 2, 1, 2], [0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
-# print(pick_best_move(sampleArray, 1))
+
 
 # fakeArray = [
 #   [5, 5, ""], [5, 10, " "], [5, 15, " "], [5, 20, " "], [5, 25, " "], [5, 30, " "],
