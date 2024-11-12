@@ -2,7 +2,7 @@ from scripts.board import Board
 
 from scripts.utils import coordFormatFromPredictions, formatOnlyColourVals, imageCapture
 
-from visualization.gridBoardTest import GridBoardDisplay
+from scripts.gridBoardTest import GridBoardDisplay
 
 from alg.connect_4_alg_stolen import pick_best_move
 
