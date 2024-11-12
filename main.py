@@ -52,6 +52,7 @@ if __name__ == "__main__":
         screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
         results = getPredictionsUntilValid()
+        stopThreads = True
 
         array = coordFormatFromPredictions(results)
 
@@ -73,13 +74,13 @@ if __name__ == "__main__":
 
         print(f"Robot's move: column {pick_best_move(np.array(colorOnlyMatrix), 1) + 1}")
 
-        # for t in threads:
+
+        should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")
+        
+    pygame.quit()        # for t in threads:
         #     t.join()
 
-        print("Main thread: All threads finished")
-        should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")
-        stopThreads = True
-    pygame.quit()
+        # print("Main thread: All threads finished")
         
 
 
