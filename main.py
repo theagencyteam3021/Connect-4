@@ -14,6 +14,8 @@ import pygame
 
 import threading
 
+import cv2 as cv
+
 from PIL import Image
 
 import inference
@@ -23,7 +25,18 @@ import inference
 
 def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
 
-    imageCapture()
+    capture = cv.VideoCapture(0)
+
+    if not capture.isOpened():
+        print("webcam error")
+
+    capture.set(cv.CAP_PROP_FOURCC,cv.VideoWriter_fourcc('M','J','P','G'))
+
+    ret, frame = capture.read()
+
+    if ret:
+        cv.imwrite("webcam_photo.jpg", frame)
+
     image = Image.open(file)
     model = inference.get_model("connect4-lxv2j/15", "fxXBp7IHZMUOlxGJbueP")
     results = model.infer(image=image)
@@ -33,6 +46,7 @@ def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
         imageCapture()
         image = Image.open(file)
         results = model.infer(image=image)
+    capture.release()
     return results
 
 def worker(stop):
@@ -54,6 +68,7 @@ if __name__ == "__main__":
         screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
         results = getPredictionsUntilValid()
+        capture.release()
         stopThreads = True
 
         array = coordFormatFromPredictions(results)

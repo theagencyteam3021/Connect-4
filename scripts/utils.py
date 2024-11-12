@@ -19,7 +19,7 @@ def formatOnlyColourVals(coordsArray):
 
 import cv2 as cv
 
-def imageCapture():
+def imageCapture(capture):
     capture = cv.VideoCapture(0)
 
     if not capture.isOpened():
@@ -32,4 +32,4 @@ def imageCapture():
     if ret:
         cv.imwrite("webcam_photo.jpg", frame)
 
-    capture.release()
+    # capture.release()
