@@ -19,7 +19,7 @@ def formatOnlyColourVals(coordsArray):
 
 import cv2 as cv
 
-def imageCapture(capture):
+def imageCapture():
     capture = cv.VideoCapture(0)
 
     if not capture.isOpened():

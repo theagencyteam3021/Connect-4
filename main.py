@@ -43,7 +43,12 @@ def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
     
     while len(results[0].predictions) != 42:
         print(f"Retaking photo {len(results[0].predictions)} spots detected.")
-        imageCapture()
+        
+        ret, frame = capture.read()
+
+        if ret:
+            cv.imwrite("webcam_photo.jpg", frame)
+
         image = Image.open(file)
         results = model.infer(image=image)
     capture.release()
@@ -68,7 +73,6 @@ if __name__ == "__main__":
         screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
         results = getPredictionsUntilValid()
-        capture.release()
         stopThreads = True
 
         array = coordFormatFromPredictions(results)
