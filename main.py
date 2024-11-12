@@ -44,11 +44,13 @@ if __name__ == "__main__":
     SCREEN_WIDTH = 750
     SCREEN_HEIGHT = 650
 
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     should_loop = ""
 
     while  should_loop != "quit" and should_loop != "q":
+
+        screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
         results = getPredictionsUntilValid()
 
         array = coordFormatFromPredictions(results)
