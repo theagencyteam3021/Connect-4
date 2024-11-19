@@ -8,6 +8,8 @@ from scripts.TerminalDisplay import TerminalBoard
 
 from alg.connect_4_alg_stolen import pick_best_move
 
+from ultralytics import YOLO
+
 import time
 
 import numpy as np
@@ -40,11 +42,14 @@ def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
         cv.imwrite("webcam_photo.jpg", frame)
 
     image = Image.open(file)
-    model = inference.get_model("connect4-lxv2j/15", "fxXBp7IHZMUOlxGJbueP")
-    results = model.infer(image=image)
+    model = YOLO('best.pt')
+    results = model('webcam_photo.jpg')
+    # model = inference.get_model("connect4-lxv2j/15", "fxXBp7IHZMUOlxGJbueP")
+    # results = model.infer(image=image)
     
-    while len(results[0].predictions) != 42:
-        print(f"Retaking photo {len(results[0].predictions)} spots detected.")
+    # while len(results[0].predictions) != 42:
+    while len(results[0].boxes.cls) != 42:
+        print(f"Retaking photo {len(results[0].boxes.cls)} spots detected.")
         
         ret, frame = capture.read()
 
@@ -52,7 +57,8 @@ def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
             cv.imwrite("webcam_photo.jpg", frame)
 
         image = Image.open(file)
-        results = model.infer(image=image)
+        results = model('webcam_photo.jpg')
+        # results = model.infer(image=image)
 
         time.sleep(0.5)
     capture.release()

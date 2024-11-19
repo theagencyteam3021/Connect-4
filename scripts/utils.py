@@ -1,9 +1,16 @@
 
+# def coordFormatFromPredictions(results):
+#     formattedList = []
+#     for result in results[0].boxes.cls:
+#         formattedList.append([result.x, result.y, result.class_name])
+#     return formattedList
+
 def coordFormatFromPredictions(results):
     formattedList = []
-    for result in results[0].predictions:
-        formattedList.append([result.x, result.y, result.class_name])
-    return formattedList
+    for i in range(len(results[0].boxes.cls)):
+        formattedList.append([float(results[0].boxes.xywh[i][0]),float(results[0].boxes.xywh[i][1]), results[0].names[int(results[0].boxes.cls[i])]])
+    
+
 
 def formatOnlyColourVals(coordsArray):
     formatedList = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
