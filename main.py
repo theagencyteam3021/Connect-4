@@ -6,6 +6,8 @@ from scripts.gridBoardTest import GridBoardDisplay
 
 from scripts.TerminalDisplay import TerminalBoard
 
+from scripts.utils import getPredictionsUntilValid
+
 from alg.connect_4_alg_stolen import pick_best_move
 
 from ultralytics import YOLO
