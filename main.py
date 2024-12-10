@@ -22,7 +22,7 @@ import cv2 as cv
 
 from PIL import Image
 
-import inference
+# import inference
 
 
 # retakes photo until 42 detections are made
