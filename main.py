@@ -22,49 +22,7 @@ import threading
 
 import cv2 as cv
 
-from PIL import Image
-
-# import inference
-
-
-# retakes photo until 42 detections are made
-
-# def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
-
-#     capture = cv.VideoCapture(0)
-
-#     if not capture.isOpened():
-#         print("webcam error")
-
-#     capture.set(cv.CAP_PROP_FOURCC,cv.VideoWriter_fourcc('M','J','P','G'))
-
-#     ret, frame = capture.read()
-
-#     if ret:
-#         cv.imwrite("webcam_photo.jpg", frame)
-
-#     image = Image.open(file)
-#     model = YOLO('best.pt')
-#     results = model('webcam_photo.jpg')
-#     # model = inference.get_model("connect4-lxv2j/15", "fxXBp7IHZMUOlxGJbueP")
-#     # results = model.infer(image=image)
-    
-#     # while len(results[0].predictions) != 42:
-#     while len(results[0].boxes.cls) != 42:
-#         print(f"Retaking photo {len(results[0].boxes.cls)} spots detected.")
-        
-#         ret, frame = capture.read()
-
-#         if ret:
-#             cv.imwrite("webcam_photo.jpg", frame)
-
-#         image = Image.open(file)
-#         results = model('webcam_photo.jpg')
-#         # results = model.infer(image=image)
-
-#         time.sleep(0.5)
-#     capture.release()
-#     return results
+# from PIL import Image
 
 def worker(stop):
         disp = GridBoardDisplay(screen, colorOnlyMatrix)
