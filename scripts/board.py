@@ -7,7 +7,7 @@ imageYHeight = 1080
 class Board:
     def __init__(self, pointList):
         self.pointList = pointList
-        print(pointList)
+        # print(pointList)
 
     # returns: [topLeft, topRight, bottomLeft, bottomRight]
     def cornerFinder(self):
