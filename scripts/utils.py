@@ -41,3 +41,45 @@ def imageCapture():
         cv.imwrite("webcam_photo.jpg", frame)
 
     # capture.release()
+
+from ultralytics import YOLO
+
+import time
+
+# capture and repreat until 42 detections are made
+# once detectons are made returns the results of the object detection
+
+def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
+
+    capture = cv.VideoCapture(0)
+
+    if not capture.isOpened():
+        print("webcam error")
+
+    capture.set(cv.CAP_PROP_FOURCC,cv.VideoWriter_fourcc('M','J','P','G'))
+
+    ret, frame = capture.read()
+
+    if ret:
+        cv.imwrite("webcam_photo.jpg", frame)
+
+    model = YOLO('best.pt')
+    results = model('webcam_photo.jpg')
+    # model = inference.get_model("connect4-lxv2j/15", "fxXBp7IHZMUOlxGJbueP")
+    # results = model.infer(image=image)
+    
+    # while len(results[0].predictions) != 42:
+    while len(results[0].boxes.cls) != 42:
+        print(f"Retaking photo {len(results[0].boxes.cls)} spots detected.")
+        
+        ret, frame = capture.read()
+
+        if ret:
+            cv.imwrite("webcam_photo.jpg", frame)
+
+        results = model('webcam_photo.jpg')
+        # results = model.infer(image=image)
+
+        time.sleep(0.5)
+    capture.release()
+    return results
