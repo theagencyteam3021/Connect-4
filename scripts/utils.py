@@ -9,6 +9,7 @@ def coordFormatFromPredictions(results):
     formattedList = []
     for i in range(len(results[0].boxes.cls)):
         formattedList.append([float(results[0].boxes.xywh[i][0]),float(results[0].boxes.xywh[i][1]), results[0].names[int(results[0].boxes.cls[i])]])
+    return formattedList
     
 
 

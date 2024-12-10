@@ -85,6 +85,7 @@ if __name__ == "__main__":
         results = getPredictionsUntilValid()
         stopThreads = True
 
+        print(f"DEBUGGING results: \n{results}")
         array = coordFormatFromPredictions(results)
 
         board = Board(array)
