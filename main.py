@@ -1,12 +1,10 @@
 from scripts.board import Board
 
-from scripts.utils import coordFormatFromPredictions, formatOnlyColourVals, imageCapture
+from scripts.utils import *
 
 from scripts.gridBoardTest import GridBoardDisplay
 
 from scripts.TerminalDisplay import TerminalBoard
-
-from scripts.utils import getPredictionsUntilValid
 
 from alg.connect_4_alg_stolen import pick_best_move
 
@@ -55,6 +53,9 @@ if __name__ == "__main__":
         # print(matrix)
         colorOnlyMatrix = formatOnlyColourVals(matrix)
 
+        if not checkfloaters(colorOnlyMatrix):
+             print("Floater detected recapturing...")
+             continue
         # colorOnlyMatrix = np.array(colorOnlyMatrix)
 
 
