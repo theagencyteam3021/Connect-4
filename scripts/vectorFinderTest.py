@@ -1,10 +1,11 @@
-from utils import imageCapture, coordFormatFromPredictions
+# from utils import imageCapture, coordFormatFromPredictions
 
 import numpy as np
 from point import Point
 import random
 
-from ultralytics import YOLO
+# from ultralytics import YOLO
+
 
 MARKER_NAME = "Blue"
 
@@ -12,13 +13,13 @@ class tablePieces:
     def __init__(self):
         self.results = []
         # top left marker
-        self.point1 = None
+        self.pointX = Point(212, 1024)
         # bottom left marker
-        self.point2 = None
+        self.pointOrigin = Point(355, 366)
         # bottom right marker
-        self.point3 = None
+        self.pointY = Point(1468, 437)
 
-    @classmethod
+
     # outputs a list of all points of a certain type
     # formats predictions, searches through list, and outputs new sorted list
     # params: name_of_detection
@@ -31,8 +32,7 @@ class tablePieces:
                 outputList.append(point)
         return outputList
 
-    @classmethod
-    # sets properties point1, point2, and point3
+    # sets properties pointX, pointOrigin, and pointY
     # captures an image, uses computer vision, and sorts out markers to then set properties
     def extractReferencePoints(self):
         imageCapture()
@@ -41,11 +41,11 @@ class tablePieces:
         referencePoints = self.findTypePiece(MARKER_NAME)
 
         # have not implemented how to determine which point is which
-        self.point1 = referencePoints[0]
-        self.point2 = referencePoints[1]
-        self.point3 = referencePoints[2]
+        self.pointX = referencePoints[0]
+        self.pointOrigin = referencePoints[1]
+        self.pointY = referencePoints[2]
 
-    @classmethod
+
     # params: name_of_detection
     # returns: [x, y, name]
     def pickPiece(self, color):
@@ -54,25 +54,27 @@ class tablePieces:
         selectedPiece = pieceList[random.randint(0, (len(pieceList) - 1))]
         return selectedPiece
 
-    @classmethod
+
     # returns: 
     def solveForConstants(self):
 
-        piece = Point(self.pickPiece[0], self.pickPiece[1])
+        # piece = Point(self.pickPiece(MARKER_NAME)[0], self.pickPiece(MARKER_NAME)[1])
+        piece =  Point(814, 776)
 
-        v = Point((self.point2.x - self.point3.x), (self.point2.y - self.point2.y))
-        u = Point((self.point1.x - self.point3.x), (self.point1.y - self.point2.y))
+        v = Point((self.pointY.x - self.pointOrigin.x), (self.pointY.y - self.pointOrigin.y))
+        u = Point((self.pointX.x - self.pointOrigin.x), (self.pointX.y - self.pointOrigin.y))
 
         # solveing for constants
 
-        a = np.array([[(self.point2.x - self.point3.x), (self.point1.x - self.point3.x)], [(self.point2.y- self.point3.y), (self.point1.x - self.point3.x)]])
+        a = np.array([[(self.pointY.x - self.pointOrigin.x), (self.pointX.x - self.pointOrigin.x)], [(self.pointY.y - self.pointOrigin.y), (self.pointX.y - self.pointOrigin.y)]])
 
-        b = np.array([piece.x - self.point3.x, piece.y - self.point3.y])
+        b = np.array([piece.x - self.pointOrigin.x, piece.y - self.pointOrigin.y])
 
         x = np.linalg.solve(a, b)
 
         return x
 
-    c1 = solveForConstants()[0]
-    c2 = solveForConstants()[1]
+c = tablePieces()
+print(c.solveForConstants()[0])
+print(c.solveForConstants()[1])
 
