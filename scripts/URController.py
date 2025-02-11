@@ -46,9 +46,13 @@ class URController:
         self.board_points = [self.High1_p, self.High2_p, self.High3_p, self.High4_p, self.High5_p, self.High6_p, self.High7_p]
         self.board_poses = [self.High1_q, self.High2_q, self.High3_q, self.High4_q, self.High5_q, self.High6_q, self.High7_q]
 
-    def drop_in_column(self, column_number):
+    def drop_in_column(self, column_number, reset_before = True, reset_after = True):
         point = self.board_points[column_number - 1]
         pose = self.board_points[column_number - 1]
+
+        if reset_before:
+            self.sock.send_cmd(f'movej(get_inverse_kin({self.Reset_p}, qnear={self.Reset_q}), a=1.3962634015954636, v=1.0471975511965976)')
+            time.sleep(5)
 
         #Go to point above the correct column
         self.sock.send_cmd(f'movej(get_inverse_kin({point}, qnear={pose}), a=1.3962634015954636, v=1.0471975511965976)')
@@ -66,6 +70,10 @@ class URController:
         #Go back up
         self.sock.send_cmd(f'movej(get_inverse_kin({point}, qnear={pose}), a=1.3962634015954636, v=1.0471975511965976)')
         time.sleep(2) #TODO tune this time
+
+        if reset_after:
+            self.sock.send_cmd(f'movej(get_inverse_kin({self.Reset_p}, qnear={self.Reset_q}), a=1.3962634015954636, v=1.0471975511965976)')
+            time.sleep(5)
 
 
 
