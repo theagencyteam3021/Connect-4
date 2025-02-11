@@ -66,7 +66,7 @@ class tablePieces:
 
         # solveing for constants
 
-        a = np.array([[(self.pointY.x - self.pointOrigin.x), (self.pointX.x - self.pointOrigin.x)], [(self.pointY.y - self.pointOrigin.y), (self.pointX.y - self.pointOrigin.y)]])
+        a = np.array([[u.x, v.x], [u.y, v.y]])
 
         b = np.array([piece.x - self.pointOrigin.x, piece.y - self.pointOrigin.y])
 
@@ -74,7 +74,25 @@ class tablePieces:
 
         return x
 
-c = tablePieces()
-print(c.solveForConstants()[0])
-print(c.solveForConstants()[1])
+    def convertToRobotPose(self, c1, c2):
 
+        #copied from ipynb
+        # Q positions:
+        robotOrigin = np.array([-3.885793749486105, -0.678901807670929, 0.5224292914019983, 4.866715195565977, -1.5703538099872034, 1.151811957359314])
+        robotX = np.array([-3.507979694996969, -1.0948572617820282, 1.2464740912066858, 4.558636828059814, -1.5702813307391565, 1.4487932920455933])
+        robotY = np.array([-4.708534542714254, -1.9790808163084925, 2.1679933706866663, 4.508105917567871, -1.5636118094073694, 0.6998665928840637])
+
+        robotVectorX = robotX - robotOrigin
+        robotVectorY = robotY - robotOrigin
+
+        return (robotOrigin + (robotVectorX * c1) + (robotVectorY * c2))
+
+
+TestClassInstance = tablePieces()
+
+c1 = TestClassInstance.solveForConstants()[0]
+c2 = TestClassInstance.solveForConstants()[1]
+
+print_pos = [f'{i:.16f}' for i in TestClassInstance.convertToRobotPose(c1, c2)]
+
+print(f'movej({print_pos}, a=1, v=0.1)'.replace("'", ""))
