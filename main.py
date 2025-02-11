@@ -68,9 +68,26 @@ if __name__ == "__main__":
         displayInCLI = TerminalBoard(colorOnlyMatrix)
         displayInCLI.printBoard()
 
-        print(f"Robot's move: column {pick_best_move(np.array(colorOnlyMatrix), 1) + 1}")
+        robotMove = pick_best_move(np.array(colorOnlyMatrix), 1) + 1
 
+        print(f"Robot's move: column {robotMove}")
 
+        match robotMove:
+            case 1:
+                pass
+            case 2:
+                pass
+            case 3:
+                pass
+            case 4:
+                pass
+            case 5:
+                pass
+            case 6:
+                pass
+            case 7:
+                pass
+            
         should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")
 
 
