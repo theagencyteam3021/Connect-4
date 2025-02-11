@@ -75,5 +75,37 @@ class URController:
             self.sock.send_cmd(f'movej(get_inverse_kin({self.Reset_p}, qnear={self.Reset_q}), a=1.3962634015954636, v=1.0471975511965976)')
             time.sleep(5)
 
+    def pick_up_piece(self, use_vision=False, reset_before=True):
+        if use_vision:
+            #TODO
+        else:
+
+            if reset_before:
+                self.sock.send_cmd(f'movej(get_inverse_kin({self.Reset_p}, qnear={self.Reset_q}), a=1.3962634015954636, v=1.0471975511965976)')
+                time.sleep(5)
+                
+            #Go above piece
+            self.sock.send_cmd(f'movej(get_inverse_kin({self.Uppiece_p}, qnear={self.Uppiece_q}), a=1.3962634015954636, v=1.0471975511965976)')
+            time.sleep(5)
+
+            #Down to piece
+            self.sock.send_cmd(f'movej(pose_add(get_target_tcp_pose(), pose_sub({self.PickUp_to_p}, {self.PickUp_from_p})), a=1.3962634015954636, v=1.0471975511965976)')
+            time.sleep(2)
+
+            #Suck!
+            self.sock.send_cmd('set_standard_digital_out(5, True)')
+            self.sock.send_cmd('set_standard_digital_out(1, True)')
+            time.sleep(1)
+
+            #Up!
+            self.sock.send_cmd(f'movej(pose_add(get_target_tcp_pose(), pose_sub({self.Moveaway_to_p}, {self.Moveaway_from_p})), a=1.3962634015954636, v=1.0471975511965976)')
+            time.sleep(2)
+
+
+
+
+
+
+
 
 
