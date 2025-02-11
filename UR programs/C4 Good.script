@@ -1,0 +1,253 @@
+def C4_Good():
+  set_tcp(p[-0.018457705833652818,-0.06671608895162245,0.19891377627880122,0.0,0.0,0.0])
+  set_safety_mode_transition_hardness(1)
+  set_target_payload(1.370000, [0.020000, -0.023000, 0.016000], [0.002601, 0.002601, 0.002601, 0.000000, 0.000000, 0.000000])
+  set_standard_analog_input_domain(0, 1)
+  set_standard_analog_input_domain(1, 1)
+  set_tool_analog_input_domain(0, 1)
+  set_tool_analog_input_domain(1, 1)
+  set_analog_outputdomain(0, 0)
+  set_analog_outputdomain(1, 0)
+  set_input_actions_to_default()
+  set_gravity([0.0, 0.0, 9.82])
+  set_tool_communication(False, 115200, 0, 1, 1.5, 3.5)
+  set_tool_output_mode(0)
+  set_tool_digital_output_mode(0, 1)
+  set_tool_digital_output_mode(1, 1)
+  set_tool_voltage(0)
+  step_count_0d53eb99_f05c_4f23_becd_43c38c8e4c1e = 0.0
+  thread Step_Counter_Thread_5d5080ba_e267_410b_a08e_52d7204f2d57():
+    while (True):
+      step_count_0d53eb99_f05c_4f23_becd_43c38c8e4c1e = step_count_0d53eb99_f05c_4f23_becd_43c38c8e4c1e + 1.0
+      sync()
+    end
+  end
+  run Step_Counter_Thread_5d5080ba_e267_410b_a08e_52d7204f2d57()
+  modbus_add_signal("192.168.1.3", 255, 1, 0, "MODBUS_1", False)
+  modbus_set_signal_update_frequency("MODBUS_1", 10)
+  modbus_add_signal("192.168.1.3", 255, 1, 1, "MODBUS_2", False)
+  modbus_set_signal_update_frequency("MODBUS_2", 10)
+  modbus_set_runstate_dependent_choice("MODBUS_2",0)
+  global Plane_1=p[-0.4714879574018183,0.18239119704499956,0.005769981555979839,-0.030031249886405566,0.013860523830950745,-0.08092320889629984]
+  global Plane_2=p[-0.34742574921530306,0.17007644943570988,0.0046902647897639,-0.04254361836361456,-0.010887231622062083,-0.028777788371895117]
+  global Plane_3=p[-0.18286572692734604,0.16294154892961848,0.012034501005351327,-0.03045059549896909,-0.006753024808885972,-0.03531463021647342]
+  global Point_1=p[-0.3154214795762654,-0.1840525916503369,0.030424798533213088,0.028402752398934528,3.092041872144473,-0.05170194734512634]
+  global c4=p[0.1693249287436303,-0.3120194364829429,0.0037945662856150864,0.06275326742733275,0.03905578244765461,-0.03069895942540372]
+  global cole=p[0.15603510971271198,-0.30832593137897374,0.01194174349936139,-0.006250974374163601,-0.0016162919403106678,-0.02885183378546061]
+  global plate_drawer=p[0.0,0.0,0.0,0.0,0.0,0.0]
+  global tool1=p[-0.4760668999513158,0.17960017562040173,0.011351157460690847,-0.043650958305520064,0.003258777353998389,-0.07097667869308488]
+  global tool2_plane=p[-0.3528742675067108,0.16993927339372164,0.010660187018904428,-0.04900714994696994,0.0013514840765308242,-0.03305953020602694]
+  global xylophone=p[-0.4394626275688903,-0.15482936172082473,0.05088246158435061,0.19215027065623264,0.11512253653215293,-2.4006608274772616]
+  global xylophone2=p[0.29964636815725076,-0.5774954088598279,0.09937996407090521,1.0557714889895886,2.605314036601625,-0.3321330823047638]
+  global Uppiece_p=p[.376422029778, -.071226865620, .036881455238, -.378239427773, 3.112534970904, .013007894252]
+  global Uppiece_q=[-3.575373713170187, -1.4598178950003167, 1.773632828389303, 4.395456953639648, -1.5600102583514612, 0.8961123824119568]
+  global PickUp_from_p=p[.376441915575, -.071224768955, .036902085336, -.378258967213, 3.112478548803, .012955482613]
+  global PickUp_to_p=p[.381396173284, -.071032749940, -.001424049052, -.378385169802, 3.112621550021, .013071820341]
+  global Moveaway_from_p=p[.376623774417, -.070910473746, .001801155367, -.378306456663, 3.112454516703, .012986017208]
+  global Moveaway_to_p=p[.376439639169, -.071235459681, .036914627345, -.378240332221, 3.112467796797, .012920658447]
+  global Reset_p=p[.283658307565, -.347660256071, .424117552911, .694819419243, 1.754722016139, -1.538816710004]
+  global Reset_q=[-3.799697462712423, -1.3525857639363785, 1.7859233061419886, 2.783622904414795, -2.3332553545581263, 0.9564146995544434]
+  global High1_p=p[.383923892194, -.436794366941, .355882691833, .770866103048, 1.921460503539, -1.517501335387]
+  global High1_q=[-3.792715851460592, -0.8057329219630738, 1.0584147612201136, 3.1758362489887695, -2.389451328908102, 1.0564604997634888]
+  global Setdown_from_p=p[.383929597290, -.436805314879, .355860543316, .770835509037, 1.921534132609, -1.517522683519]
+  global Setdown_to_p=p[.379546938541, -.439674711440, .329517075152, .706496493548, 1.795959030748, -1.636075283020]
+  global Setup_from_p=p[.384068117791, -.436577644833, .330268594615, .770834468257, 1.921491104357, -1.517474595650]
+  global Setup_to_p=p[.383914886555, -.436801558250, .355875511369, .770902716690, 1.921431775437, -1.517494341675]
+  global High2_p=p[.346608810219, -.435527949910, .355667318972, .770792286172, 1.921501972866, -1.517392957842]
+  global High2_q=[-3.8518269697772425, -0.9572653335383912, 1.3284443060504358, 3.0409957605549316, -2.332668129597799, 1.0333276987075806]
+  global High3_p=p[.310654891907, -.434331639067, .355520000167, .770847328453, 1.921463503686, -1.517476065221]
+  global High3_q=[-3.9200268427478235, -1.0886546236327668, 1.547826115285055, 2.937222643489502, -2.266984764729635, 1.0095351934432983]
+  global High4_p=p[.275219049685, -.433139676498, .355386575131, .770826198448, 1.921414544468, -1.517515018134]
+  global High4_q=[-4.001431767140524, -1.2128001016429444, 1.7400792280780237, 2.8538028436848144, -2.1881230513202112, 0.9843456149101257]
+  global High5_p=p[.243746934823, -.432073987441, .355242743949, .770766198360, 1.921415778873, -1.517508684155]
+  global High5_q=[-4.089252297078268, -1.3229243171266098, 1.896421257649557, 2.7945615488239746, -2.102672878895895, 0.9601733684539795]
+  global High6_p=p[.208102189615, -.430909972941, .355053536542, .770871303736, 1.921426933467, -1.517550577333]
+  global High6_q=[-4.2122536341296595, -1.451815740471222, 2.060046974812643, 2.746354265803955, -1.9827335516559046, 0.9301550984382629]
+  global High7_p=p[.171431770689, -.429665739503, .354906115589, .770830549235, 1.921357967341, -1.517565443450]
+  global High7_q=[-4.374709073697225, -1.595964094201559, 2.2156737486468714, 2.723489924068115, -1.8237112204181116, 0.8948841094970703]
+  global Plinko_Reset_p=p[.297690553083, -.194046922432, .645481875831, .386368595433, 1.840559467859, -.867299053253]
+  global Plinko_Reset_q=[-3.8191383520709437, -1.7399875126280726, 0.620101277028219, 4.48345057546582, -1.7113006750689905, 1.1948678493499756]
+  global Plinko_Point1_p=p[.618627993801, -.119006959169, .627974502819, -.624325456845, 1.489125426322, -.586010917470]
+  global Plinko_Point1_q=[-3.8085432688342493, -0.8505228322795411, 0.060010735188619435, 3.9462825494953613, -0.8845532576190394, 0.7880352735519409]
+  global Plinko_Point_2_p=p[.618674112853, -.118864168449, .612340260274, -.624300112788, 1.489056706322, -.586049952122]
+  global Plinko_Point_2_q=[-3.8077579180346888, -0.5876795810512085, -0.4522317051887512, 4.195774717921875, -0.8848875204669397, 0.7877804040908813]
+  def Column_1():
+    $ 29 "Column_1" "noBreak"
+    $ 30 "MoveJ"
+    $ 31 "High1" "breakAfter"
+    movej(get_inverse_kin(High1_p, qnear=High1_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 32 "Setdown" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setdown_to_p, Setdown_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+    $ 33 "Set gripper=Off"
+    set_standard_digital_out(1, False)
+    $ 34 "Set vacume_tank=Off"
+    set_standard_digital_out(5, False)
+    $ 35 "Setup" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setup_to_p, Setup_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+  end
+  def Column_2():
+    $ 36 "Column_2" "noBreak"
+    $ 37 "MoveJ"
+    $ 38 "High2" "breakAfter"
+    movej(get_inverse_kin(High2_p, qnear=High2_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 39 "Setdown" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setdown_to_p, Setdown_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+    $ 40 "Set gripper=Off"
+    set_standard_digital_out(1, False)
+    $ 41 "Set vacume_tank=Off"
+    set_standard_digital_out(5, False)
+    $ 42 "Setup" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setup_to_p, Setup_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+  end
+  def Column_3():
+    $ 43 "Column_3" "noBreak"
+    $ 44 "MoveJ"
+    $ 45 "High3" "breakAfter"
+    movej(get_inverse_kin(High3_p, qnear=High3_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 46 "Setdown" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setdown_to_p, Setdown_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+    $ 47 "Set gripper=Off"
+    set_standard_digital_out(1, False)
+    $ 48 "Set vacume_tank=Off"
+    set_standard_digital_out(5, False)
+    $ 49 "Setup" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setup_to_p, Setup_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+  end
+  def Column_4():
+    $ 50 "Column_4" "noBreak"
+    $ 51 "MoveJ"
+    $ 52 "High4" "breakAfter"
+    movej(get_inverse_kin(High4_p, qnear=High4_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 53 "Setdown" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setdown_to_p, Setdown_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+    $ 54 "Set gripper=Off"
+    set_standard_digital_out(1, False)
+    $ 55 "Set vacume_tank=Off"
+    set_standard_digital_out(5, False)
+    $ 56 "Setup" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setup_to_p, Setup_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+  end
+  def Column_5():
+    $ 57 "Column_5" "noBreak"
+    $ 58 "MoveJ"
+    $ 59 "High5" "breakAfter"
+    movej(get_inverse_kin(High5_p, qnear=High5_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 60 "Setdown" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setdown_to_p, Setdown_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+    $ 61 "Set gripper=Off"
+    set_standard_digital_out(1, False)
+    $ 62 "Set vacume_tank=Off"
+    set_standard_digital_out(5, False)
+    $ 63 "Setup" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setup_to_p, Setup_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+  end
+  def Column_6():
+    $ 64 "Column_6" "noBreak"
+    $ 65 "MoveJ"
+    $ 66 "High6" "breakAfter"
+    movej(get_inverse_kin(High6_p, qnear=High6_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 67 "Setdown" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setdown_to_p, Setdown_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+    $ 68 "Set gripper=Off"
+    set_standard_digital_out(1, False)
+    $ 69 "Set vacume_tank=Off"
+    set_standard_digital_out(5, False)
+    $ 70 "Setup" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setup_to_p, Setup_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+  end
+  def Column_7():
+    $ 71 "Column_7" "noBreak"
+    $ 72 "MoveJ"
+    $ 73 "High7" "breakAfter"
+    movej(get_inverse_kin(High7_p, qnear=High7_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 74 "Setdown" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setdown_to_p, Setdown_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+    $ 75 "Set gripper=Off"
+    set_standard_digital_out(1, False)
+    $ 76 "Set vacume_tank=Off"
+    set_standard_digital_out(5, False)
+    $ 77 "Setup" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Setup_to_p, Setup_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+  end
+  def Plinko_Program():
+    $ 78 "Plinko_Program" "noBreak"
+    $ 79 "MoveJ"
+    $ 80 "Plinko_Reset" "breakAfter"
+    movej(get_inverse_kin(Plinko_Reset_p, qnear=Plinko_Reset_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 81 "Plinko_Point1" "breakAfter"
+    movej(get_inverse_kin(Plinko_Point1_p, qnear=Plinko_Point1_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 82 "Plinko_Point_2" "breakAfter"
+    movej(get_inverse_kin(Plinko_Point_2_p, qnear=Plinko_Point_2_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 83 "Set gripper=Off"
+    set_standard_digital_out(1, False)
+    $ 84 "Set vacume_tank=Off"
+    set_standard_digital_out(5, False)
+    $ 85 "Plinko_Point1" "breakAfter"
+    movej(get_inverse_kin(Plinko_Point1_p, qnear=Plinko_Point1_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 86 "Plinko_Reset" "breakAfter"
+    movej(get_inverse_kin(Plinko_Reset_p, qnear=Plinko_Reset_q), a=1.3962634015954636, v=1.0471975511965976)
+  end
+  while (True):
+    $ 1 "Robot Program"
+    $ 2 "MoveJ"
+    $ 3 "Uppiece" "breakAfter"
+    movej(get_inverse_kin(Uppiece_p, qnear=Uppiece_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 4 "PickUp" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(PickUp_to_p, PickUp_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+    $ 5 "Set vacume_tank=On"
+    set_standard_digital_out(5, True)
+    $ 6 "Set gripper=On"
+    set_standard_digital_out(1, True)
+    $ 7 "Moveaway" "breakAfter"
+    movej(pose_add(get_target_tcp_pose(), pose_sub(Moveaway_to_p, Moveaway_from_p)), a=1.3962634015954636, v=1.0471975511965976)
+    $ 8 "MoveJ"
+    $ 9 "Reset" "breakAfter"
+    movej(get_inverse_kin(Reset_p, qnear=Reset_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 10 "var_1≔'Please select column'"
+    global var_1=request_integer_from_primary_client("Please select column")
+    $ 11 "If var_1≟1"
+    if (var_1 == 1):
+      $ 12 "Call Column_1"
+      Column_1()
+    end
+    $ 13 "If var_1≟2"
+    if (var_1 == 2):
+      $ 14 "Call Column_2"
+      Column_2()
+    end
+    $ 15 "If var_1≟3"
+    if (var_1 == 3):
+      $ 16 "Call Column_3"
+      Column_3()
+    end
+    $ 17 "If var_1≟4"
+    if (var_1 == 4):
+      $ 18 "Call Column_4"
+      Column_4()
+    end
+    $ 19 "If var_1≟5"
+    if (var_1 == 5):
+      $ 20 "Call Column_5"
+      Column_5()
+    end
+    $ 21 "If var_1≟6"
+    if (var_1 == 6):
+      $ 22 "Call Column_6"
+      Column_6()
+    end
+    $ 23 "If var_1≟7"
+    if (var_1 == 7):
+      $ 24 "Call Column_7"
+      Column_7()
+    end
+    $ 25 "If var_1≟8"
+    if (var_1 == 8):
+      $ 26 "Call Plinko_Program"
+      Plinko_Program()
+    end
+    $ 27 "Reset" "breakAfter"
+    movej(get_inverse_kin(Reset_p, qnear=Reset_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 28 "Popup: Reset Please"
+    popup("Reset Please", "Message", False, False, blocking=True)
+  end
+end
