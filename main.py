@@ -8,6 +8,8 @@ from scripts.TerminalDisplay import TerminalBoard
 
 from alg.connect_4_alg_stolen import pick_best_move
 
+from scripts.URController import URController
+
 from ultralytics import YOLO
 
 import time
@@ -72,21 +74,7 @@ if __name__ == "__main__":
 
         print(f"Robot's move: column {robotMove}")
 
-        match robotMove:
-            case 1:
-                pass
-            case 2:
-                pass
-            case 3:
-                pass
-            case 4:
-                pass
-            case 5:
-                pass
-            case 6:
-                pass
-            case 7:
-                pass
+        URController.drop_in_column(robotMove)
             
         should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")
 
