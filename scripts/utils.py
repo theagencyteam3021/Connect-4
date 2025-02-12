@@ -28,7 +28,7 @@ def formatOnlyColourVals(coordsArray):
 import cv2 as cv
 
 def imageCapture():
-    capture = cv.VideoCapture(0)
+    capture = cv.VideoCapture('/dev/video2')
 
     if not capture.isOpened():
         print("webcam error")
@@ -52,7 +52,7 @@ import time
 
 def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
 
-    capture = cv.VideoCapture(0)
+    capture = cv.VideoCapture(2)
 
     if not capture.isOpened():
         print("webcam error")
