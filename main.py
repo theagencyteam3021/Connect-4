@@ -53,7 +53,7 @@ if __name__ == "__main__":
         # print(matrix)
         colorOnlyMatrix = formatOnlyColourVals(matrix)
 
-        if not checkfloaters(colorOnlyMatrix):
+        if not checkFloaters(colorOnlyMatrix):
              print("Floater detected recapturing...")
              continue
         # colorOnlyMatrix = np.array(colorOnlyMatrix)
