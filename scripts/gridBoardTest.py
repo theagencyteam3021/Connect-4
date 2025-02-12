@@ -31,6 +31,7 @@ class GridBoardDisplay():
                     running = False
 
             pygame.display.update()
+            pygame.event.pump()
             if stop():
                 break
 
