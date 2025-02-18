@@ -1,5 +1,3 @@
-from server-side import URSocket
-
 command = '''
 set_tcp(p[-0.018457705833652818,-0.06671608895162245,0.19891377627880122,0.0,0.0,0.0])
 set_safety_mode_transition_hardness(1)
