@@ -63,9 +63,10 @@ if __name__ == "__main__":
 
         threads = []
         stopThreads = False
-        t = threading.Thread(target=worker, args =(lambda : stopThreads, ))
+        t = threading.Thread(target=worker, args =(lambda : stopThreads, colorOnlyMatrix))
         threads.append(t)
         t.start()
+
 
         displayInCLI = TerminalBoard(colorOnlyMatrix)
         displayInCLI.printBoard()
