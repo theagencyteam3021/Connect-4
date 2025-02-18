@@ -34,14 +34,15 @@ if __name__ == "__main__":
 
     SCREEN_WIDTH = 750
     SCREEN_HEIGHT = 650
-
+    controller = URController()
 
     should_loop = ""
 
     while  should_loop != "quit" and should_loop != "q":
 
         screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
+        
+        controller.goto_reset()
         results = getPredictionsUntilValid()
         stopThreads = True
 
@@ -74,7 +75,7 @@ if __name__ == "__main__":
 
         print(f"Robot's move: column {robotMove}")
 
-        URController.drop_in_column(robotMove)
+        controller.drop_in_column(robotMove)
             
         should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")
 
