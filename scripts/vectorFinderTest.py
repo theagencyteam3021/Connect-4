@@ -78,9 +78,9 @@ class tablePieces:
 
         #copied from ipynb
         # Q positions:
-        robotOrigin = np.array([-3.885793749486105, -0.678901807670929, 0.5224292914019983, 4.866715195565977, -1.5703538099872034, 1.151811957359314])
-        robotX = np.array([-3.507979694996969, -1.0948572617820282, 1.2464740912066858, 4.558636828059814, -1.5702813307391565, 1.4487932920455933])
-        robotY = np.array([-4.708534542714254, -1.9790808163084925, 2.1679933706866663, 4.508105917567871, -1.5636118094073694, 0.6998665928840637])
+        robotOrigin = np.array([.442266846286, -.301612002692, .047130197896, -.507610936746, -3.100185449067, -.000036162732])
+        robotX = np.array([.429488966095, -.092791700394, .045215730203, -.381439096286, -3.118239823101, -.000144275467])
+        robotY = np.array(.104995015661, -.264398600885, .046163729680, 1.067003049097, 2.943820912978, -.015920545841)
 
         robotVectorX = robotX - robotOrigin
         robotVectorY = robotY - robotOrigin
@@ -91,6 +91,9 @@ class tablePieces:
         c1 = self.solveForConstants()[0]
         c2 = self.solveForConstants()[1]
 
+print_pos = [f'{i:.12f}' for i in TestClassInstance.convertToRobotPose(c1, c2)]
+
+print(f'movej(p{print_pos}, a=1, v=0.1)'.replace("'", ""))
         print_pos = [f'{i:.16f}' for i in self.convertToRobotPose(c1, c2)]
         return f'movej({print_pos}, a=1, v=0.1)'.replace("'", "")
 
