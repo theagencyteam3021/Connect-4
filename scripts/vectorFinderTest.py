@@ -13,11 +13,11 @@ class tablePieces:
     def __init__(self):
         self.results = []
         # top left marker
-        self.pointX = Point(212, 1024)
+        self.pointX = Point(754, 53)
         # bottom left marker
-        self.pointOrigin = Point(355, 366)
+        self.pointOrigin = Point(780, 321)
         # bottom right marker
-        self.pointY = Point(1468, 437)
+        self.pointY = Point(363, 288)
 
 
     # outputs a list of all points of a certain type
@@ -59,7 +59,7 @@ class tablePieces:
     def solveForConstants(self):
 
         # piece = Point(self.pickPiece(MARKER_NAME)[0], self.pickPiece(MARKER_NAME)[1])
-        piece =  Point(814, 776)
+        piece =  Point(631, 188)
 
         v = Point((self.pointY.x - self.pointOrigin.x), (self.pointY.y - self.pointOrigin.y))
         u = Point((self.pointX.x - self.pointOrigin.x), (self.pointX.y - self.pointOrigin.y))
