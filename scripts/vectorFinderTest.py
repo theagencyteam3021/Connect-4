@@ -86,13 +86,11 @@ class tablePieces:
         robotVectorY = robotY - robotOrigin
 
         return (robotOrigin + (robotVectorX * c1) + (robotVectorY * c2))
+    
+    def getPickUpPieceCommand(self):
+        c1 = self.solveForConstants()[0]
+        c2 = self.solveForConstants()[1]
 
+        print_pos = [f'{i:.16f}' for i in self.convertToRobotPose(c1, c2)]
+        return f'movej({print_pos}, a=1, v=0.1)'.replace("'", "")
 
-TestClassInstance = tablePieces()
-
-c1 = TestClassInstance.solveForConstants()[0]
-c2 = TestClassInstance.solveForConstants()[1]
-
-print_pos = [f'{i:.16f}' for i in TestClassInstance.convertToRobotPose(c1, c2)]
-
-print(f'movej({print_pos}, a=1, v=0.1)'.replace("'", ""))
