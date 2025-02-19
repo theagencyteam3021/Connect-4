@@ -91,9 +91,5 @@ class tablePieces:
         c1 = self.solveForConstants()[0]
         c2 = self.solveForConstants()[1]
 
-print_pos = [f'{i:.12f}' for i in TestClassInstance.convertToRobotPose(c1, c2)]
-
-print(f'movej(p{print_pos}, a=1, v=0.1)'.replace("'", ""))
         print_pos = [f'{i:.16f}' for i in self.convertToRobotPose(c1, c2)]
         return f'movej({print_pos}, a=1, v=0.1)'.replace("'", "")
-
