@@ -63,5 +63,24 @@ class URController:
         self.sock.send_cmd(f'movej(get_inverse_kin({point}, qnear={pose}), a=1.3962634015954636, v=1.0471975511965976)')
         time.sleep(2) #TODO tune this time
 
+    # JM W pick up from point on collection plate
+    def pick_up_from_plate(self, point):
+
+        #Go to point above the correct column
+        self.sock.send_cmd(f'movej(get_inverse_kin({point}, qnear={pose}), a=1.3962634015954636, v=1.0471975511965976)')
+        time.sleep(5) #TODO tune this time
+
+        #Go down into the slot
+        self.sock.send_cmd(f'movej(pose_add(get_target_tcp_pose(), pose_sub({self.Setdown_to_p}, {self.Setdown_from_p})), a=1.3962634015954636, v=1.0471975511965976)')
+        time.sleep(2) #TODO tune this time
+
+        #Drop the piece
+        self.sock.send_cmd('set_standard_digital_out(1, False)')
+        self.sock.send_cmd('set_standard_digital_out(5, False)')
+        time.sleep(1) #TODO tune this time
+
+        #Go back up
+        self.sock.send_cmd(f'movej(get_inverse_kin({point}, qnear={pose}), a=1.3962634015954636, v=1.0471975511965976)')
+        time.sleep(2) #TODO tune this time
 
 
