@@ -7,6 +7,7 @@ class URSocket:
         self.ROBOT_IP = robot_ip
         self.ROBOT_PORT = robot_port
         self.DEBUG = debug 
+        self.sock_connect()
 
     def sock_connect(self):
         '''
