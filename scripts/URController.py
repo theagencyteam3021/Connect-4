@@ -41,6 +41,9 @@ class URController:
         self.Plinko_Point1_p='p[.595962463701, -.201904714105, .606146446172, -1.004933677079, 1.379785948807, -.995298248346]'
         self.Plinko_Point1_q='[-4.08470589319338, -0.8768575948527833, 0.2541125456439417, 3.827688379878662, -0.6530912558185022, 0.23826520144939423]'
 
+        # incomplete: add relative movement to grab piece off plate
+        self.Go_Down_To_Grab_p='[]'
+
         self.board_points = [self.High1_p, self.High2_p, self.High3_p, self.High4_p, self.High5_p, self.High6_p, self.High7_p]
         self.board_poses = [self.High1_q, self.High2_q, self.High3_q, self.High4_q, self.High5_q, self.High6_q, self.High7_q]
 
@@ -69,20 +72,21 @@ class URController:
     def pick_up_from_plate(self, point):
 
         #Go to point above the correct column
-        self.sock.send_cmd(f'movej(get_inverse_kin({point}, qnear={pose}), a=1.3962634015954636, v=1.0471975511965976)')
+        self.sock.send_cmd(f'movej({point}, a=1.3962634015954636, v=1.0471975511965976)')
         time.sleep(5) #TODO tune this time
 
-        #Go down into the slot
-        self.sock.send_cmd(f'movej(pose_add(get_target_tcp_pose(), pose_sub({self.Setdown_to_p}, {self.Setdown_from_p})), a=1.3962634015954636, v=1.0471975511965976)')
+        #Go down to spot
+        # pose not implemented
+        self.sock.send_cmd(f'movej(pose_add(get_target_tcp_pose(), pose_sub({self.Go_Down_To_Grab_p}, {self.Go_Down_To_Grab_p})), a=1.3962634015954636, v=1.0471975511965976)')
         time.sleep(2) #TODO tune this time
 
-        #Drop the piece
-        self.sock.send_cmd('set_standard_digital_out(1, False)')
-        self.sock.send_cmd('set_standard_digital_out(5, False)')
+        #Grab the piece
+        self.sock.send_cmd('set_standard_digital_out(1, True)')
+        self.sock.send_cmd('set_standard_digital_out(5, True)')
         time.sleep(1) #TODO tune this time
 
         #Go back up
-        self.sock.send_cmd(f'movej(get_inverse_kin({point}, qnear={pose}), a=1.3962634015954636, v=1.0471975511965976)')
+        self.sock.send_cmd(f'movej({point}, a=1.3962634015954636, v=1.0471975511965976)')
         time.sleep(2) #TODO tune this time
         
         
