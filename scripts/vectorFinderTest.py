@@ -84,7 +84,11 @@ class tablePieces:
         robotVectorX = robotX - robotOrigin
         robotVectorY = robotY - robotOrigin
 
-        return (robotOrigin + (robotVectorX * c1) + (robotVectorY * c2))
+        output = (robotOrigin + (robotVectorX * c1) + (robotVectorY * c2))
+        #Use the same angles as the origin because they are getting messed up with the linalg
+        output = np.hstack((output[0:3], robotOrigin[3:]))
+
+        return output
     
     def getPickUpPieceCommand(self):
         c1 = self.solveForConstants()[0]
