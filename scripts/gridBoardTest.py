@@ -4,7 +4,7 @@ sampleArray = [[1, 1, 1, 2, 1, 2, 2], [1, 1, 2, 1, 2, 2, 1], [1, 2, 1, 1, 2, 1, 
 
 
 class GridBoardDisplay():
-    def __init__(self, screenSurface, array=sampleArray) -> None:
+    def __init__(self, screenSurface= pygame.display.set_mode((750, 650)), array=sampleArray) -> None:
         pygame.init()
         self.SCREEN_WIDTH = 750
         self.SCREEN_HEIGHT = 650
@@ -12,7 +12,7 @@ class GridBoardDisplay():
         # self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
         self.array = list(reversed(array))
     
-    def run(self, stop):
+    def run(self, stop=False):
         running = True
         while running:
             self.screen.fill((0, 0, 0))
@@ -32,9 +32,11 @@ class GridBoardDisplay():
 
             pygame.display.update()
             pygame.event.pump()
-            if stop():
+            if stop:
                 break
-
+if __name__ == "__main__":
+    test = GridBoardDisplay()
+    test.run()
 
 
 # this is just output copy pasted from main
