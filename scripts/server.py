@@ -40,7 +40,8 @@ class URSocket:
 
 if __name__ == '__main__':
     sock = URSocket(debug=True)
-    sock.sock_connect()
+    #sock.sock_connect()
     cmd = input()
     while cmd != 'q':
         sock.send_cmd(cmd)
+        cmd = input()

@@ -13,11 +13,11 @@ class tablePieces:
     def __init__(self):
         self.results = []
         # top left marker
-        self.pointX = Point(754, 53)
+        self.pointX = Point(754, 65)
         # bottom left marker
         self.pointOrigin = Point(780, 321)
         # bottom right marker
-        self.pointY = Point(363, 288)
+        self.pointY = Point(362, 284)
 
 
     # outputs a list of all points of a certain type
@@ -59,7 +59,7 @@ class tablePieces:
     def solveForConstants(self):
 
         # piece = Point(self.pickPiece(MARKER_NAME)[0], self.pickPiece(MARKER_NAME)[1])
-        piece =  Point(631, 188)
+        piece =  Point(529, 66)
 
         v = Point((self.pointY.x - self.pointOrigin.x), (self.pointY.y - self.pointOrigin.y))
         u = Point((self.pointX.x - self.pointOrigin.x), (self.pointX.y - self.pointOrigin.y))
@@ -104,6 +104,6 @@ if __name__ == "__main__":
     c1 = TestClassInstance.solveForConstants()[0]
     c2 = TestClassInstance.solveForConstants()[1]
 
-    print_pos = [f'{i:.16f}' for i in TestClassInstance.convertToRobotPose(c1, c2)]
+    #print_pos = [f'{i:.16f}' for i in TestClassInstance.convertToRobotPose(c1, c2)]
 
-    print(f'movej({print_pos}, a=1, v=0.1)'.replace("'", ""))
+    print(TestClassInstance.getPickUpPieceCommand())
