@@ -10,7 +10,7 @@ import random
 MARKER_NAME = "Blue"
 
 class tablePieces:
-    def __init__(self):
+    def __init__(self, piece=Point(529, 66)):
         self.results = []
         # top left marker
         self.pointX = Point(754, 65)
@@ -18,6 +18,8 @@ class tablePieces:
         self.pointOrigin = Point(780, 321)
         # bottom right marker
         self.pointY = Point(362, 284)
+
+        self.piece = piece
 
 
     # outputs a list of all points of a certain type
@@ -59,7 +61,6 @@ class tablePieces:
     def solveForConstants(self):
 
         # piece = Point(self.pickPiece(MARKER_NAME)[0], self.pickPiece(MARKER_NAME)[1])
-        piece =  Point(529, 66)
 
         v = Point((self.pointY.x - self.pointOrigin.x), (self.pointY.y - self.pointOrigin.y))
         u = Point((self.pointX.x - self.pointOrigin.x), (self.pointX.y - self.pointOrigin.y))
@@ -68,7 +69,7 @@ class tablePieces:
 
         a = np.array([[u.x, v.x], [u.y, v.y]])
 
-        b = np.array([piece.x - self.pointOrigin.x, piece.y - self.pointOrigin.y])
+        b = np.array([self.piece.x - self.pointOrigin.x, self.piece.y - self.pointOrigin.y])
 
         x = np.linalg.solve(a, b)
 
