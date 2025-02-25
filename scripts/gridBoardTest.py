@@ -4,7 +4,7 @@ sampleArray = [[1, 1, 1, 2, 1, 2, 2], [1, 1, 2, 1, 2, 2, 1], [1, 2, 1, 1, 2, 1, 
 
 
 class GridBoardDisplay():
-    def __init__(self, screenSurface= pygame.display.set_mode((750, 650)), array=sampleArray) -> None:
+    def __init__(self, screenSurface=pygame.display.set_mode((750, 650)), array=sampleArray) -> None:
         pygame.init()
         self.SCREEN_WIDTH = 750
         self.SCREEN_HEIGHT = 650
