@@ -98,7 +98,7 @@ class tablePieces:
         return f'movej(p{print_pos}, a=1, v=0.1)'.replace("'", "")
 
 
-if __name__ == "_main__":
+if __name__ == "__main__":
     TestClassInstance = tablePieces()
 
     c1 = TestClassInstance.solveForConstants()[0]
