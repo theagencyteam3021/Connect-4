@@ -1,7 +1,7 @@
 # from utils import imageCapture, coordFormatFromPredictions
 
 import numpy as np
-from point import Point
+from scripts.point import Point
 import random
 
 # from ultralytics import YOLO
