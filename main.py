@@ -10,6 +10,8 @@ from alg.connect_4_alg_stolen import pick_best_move
 
 from scripts.URController import URController
 
+from scripts.vectorFinderTest import tablePieces
+
 from ultralytics import YOLO
 
 import time
@@ -39,6 +41,11 @@ if __name__ == "__main__":
     should_loop = ""
 
     while  should_loop != "quit" and should_loop != "q":
+
+        # get image
+        # use alg on image to find coords
+        # call vector finder
+        # 
 
         screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         
