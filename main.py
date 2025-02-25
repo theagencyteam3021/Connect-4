@@ -26,7 +26,7 @@ import cv2 as cv
 
 # from PIL import Image
 
-def worker(stop):
+def worker(stop, colorOnlyMatrix):
         disp = GridBoardDisplay(screen, colorOnlyMatrix)
         disp.run(stop)
 
