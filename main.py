@@ -78,6 +78,7 @@ if __name__ == "__main__":
 
         controller.drop_in_column(robotMove)
             
+        controller.goto_reset()
         should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")
 
 

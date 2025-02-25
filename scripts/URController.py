@@ -95,5 +95,15 @@ class URController:
         self.sock.send_cmd(f'movej({self.Reset_p}, a=1.3962634015954636, v=1.0471975511965976)')
         time.sleep(5)
         
+    def gripper_open(self):
+        self.sock.send_cmd('set_standard_digital_out(1, True)')
+        self.sock.send_cmd('set_standard_digital_out(5, True)')
+        time.sleep(1) #TODO tune this time
+        
+    def gripper_close(self):
+        self.sock.send_cmd('set_standard_digital_out(1, True)')
+        self.sock.send_cmd('set_standard_digital_out(5, True)')
+        time.sleep(1) #TODO tune this time
+        
 
 

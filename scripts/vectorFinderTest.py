@@ -96,7 +96,7 @@ class tablePieces:
         c2 = self.solveForConstants()[1]
 
         print_pos = [f'{i:.16f}' for i in self.convertToRobotPose(c1, c2)]
-        return f'movej(p{print_pos}, a=1, v=0.1)'.replace("'", "")
+        return f'movej(p{print_pos}, a=1.3962634015954636, v=1.0471975511965976)'.replace("'", "")
 
 
 if __name__ == "__main__":
