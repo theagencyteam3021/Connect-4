@@ -2,24 +2,25 @@
 
 import numpy as np
 from scripts.point import Point
+from scripts.utils import coordFormatFromPredictions, imageCapture
 import random
 
 # from ultralytics import YOLO
 
-
+# obsolete code from a possible detection based marker system
 MARKER_NAME = "Blue"
 
 class tablePieces:
-    def __init__(self, piece=Point(529, 66)):
-        self.results = []
+    def __init__(self, results, pointOrigin = Point(780, 321), pointX = Point(754, 65), pointY = Point(362, 284)):
+        self.results = results
         # top left marker
-        self.pointX = Point(754, 65)
+        self.pointX = pointX
         # bottom left marker
-        self.pointOrigin = Point(780, 321)
+        self.pointOrigin = pointOrigin
         # bottom right marker
-        self.pointY = Point(362, 284)
+        self.pointY = pointY
 
-        self.piece = piece
+        self.piece = Point(529, 66)
 
 
     # outputs a list of all points of a certain type
@@ -34,6 +35,7 @@ class tablePieces:
                 outputList.append(point)
         return outputList
 
+    # obsolete code from a possible detection based marker system
     # sets properties pointX, pointOrigin, and pointY
     # captures an image, uses computer vision, and sorts out markers to then set properties
     def extractReferencePoints(self):
@@ -75,6 +77,7 @@ class tablePieces:
 
         return x
 
+
     def convertToRobotPose(self, c1, c2):
 
         #copied from ipynb
@@ -97,6 +100,20 @@ class tablePieces:
 
         print_pos = [f'{i:.16f}' for i in self.convertToRobotPose(c1, c2)]
         return f'movej(p{print_pos}, a=1.3962634015954636, v=1.0471975511965976)'.replace("'", "")
+    
+    def getPickUpPiecePose(self):
+        c1 = self.solveForConstants()[0]
+        c2 = self.solveForConstants()[1]
+
+        return [f'{i:.16f}' for i in self.convertToRobotPose(c1, c2)]
+    
+    def pieceSetter(self, coords):
+        self.piece = Point(coords)
+
+    def ancorSetter(self, coordsOrigin, coordsX, coordsY):
+        self.pointOrigin = Point(coordsOrigin)
+        self.pointX = Point(coordsX)
+        self.pointY = Point(coordsY)
 
 
 if __name__ == "__main__":
