@@ -11,16 +11,16 @@ import random
 MARKER_NAME = "Blue"
 
 class tablePieces:
-    def __init__(self, piece=Point(529, 66)):
-        self.results = []
+    def __init__(self, results, pointOrigin = Point(780, 321), pointX = Point(754, 65), pointY = Point(362, 284)):
+        self.results = results
         # top left marker
-        self.pointX = Point(754, 65)
+        self.pointX = pointX
         # bottom left marker
-        self.pointOrigin = Point(780, 321)
+        self.pointOrigin = pointOrigin
         # bottom right marker
-        self.pointY = Point(362, 284)
+        self.pointY = pointY
 
-        self.piece = piece
+        self.piece = Point(529, 66)
 
 
     # outputs a list of all points of a certain type
@@ -63,7 +63,6 @@ class tablePieces:
     def solveForConstants(self):
 
         # piece = Point(self.pickPiece(MARKER_NAME)[0], self.pickPiece(MARKER_NAME)[1])
-        piece =  Point(814, 776)
 
         v = Point((self.pointY.x - self.pointOrigin.x), (self.pointY.y - self.pointOrigin.y))
         u = Point((self.pointX.x - self.pointOrigin.x), (self.pointX.y - self.pointOrigin.y))
@@ -72,7 +71,7 @@ class tablePieces:
 
         a = np.array([[u.x, v.x], [u.y, v.y]])
 
-        b = np.array([piece.x - self.pointOrigin.x, piece.y - self.pointOrigin.y])
+        b = np.array([self.piece.x - self.pointOrigin.x, self.piece.y - self.pointOrigin.y])
 
         x = np.linalg.solve(a, b)
 
@@ -83,10 +82,9 @@ class tablePieces:
 
         #copied from ipynb
         # Q positions:
-        robotOrigin = np.array([-3.885793749486105, -0.678901807670929, 0.5224292914019983, 4.866715195565977, -1.5703538099872034, 1.151811957359314])
-        robotX = np.array([-3.507979694996969, -1.0948572617820282, 1.2464740912066858, 4.558636828059814, -1.5702813307391565, 1.4487932920455933])
-        robotY = np.array([-4.708534542714254, -1.9790808163084925, 2.1679933706866663, 4.508105917567871, -1.5636118094073694, 0.6998665928840637])
-
+        robotOrigin = np.array([.442266846286, -.301612002692, .047130197896, -.507610936746, -3.100185449067, -.000036162732])
+        robotX = np.array([.429488966095, -.092791700394, .045215730203, -.381439096286, -3.118239823101, -.000144275467])
+        robotY = np.array([.104995015661, -.264398600885, .046163729680, 1.067003049097, 2.943820912978, -.015920545841])
         robotVectorX = robotX - robotOrigin
         robotVectorY = robotY - robotOrigin
 
@@ -102,14 +100,28 @@ class tablePieces:
 
         print_pos = [f'{i:.16f}' for i in self.convertToRobotPose(c1, c2)]
         return f'movej(p{print_pos}, a=1.3962634015954636, v=1.0471975511965976)'.replace("'", "")
+    
+    def getPickUpPiecePose(self):
+        c1 = self.solveForConstants()[0]
+        c2 = self.solveForConstants()[1]
+
+        return [f'{i:.16f}' for i in self.convertToRobotPose(c1, c2)]
+    
+    def pieceSetter(self, coords):
+        self.piece = Point(coords)
+
+    def ancorSetter(self, coordsOrigin, coordsX, coordsY):
+        self.pointOrigin = Point(coordsOrigin)
+        self.pointX = Point(coordsX)
+        self.pointY = Point(coordsY)
 
 
 if __name__ == "__main__":
     TestClassInstance = tablePieces()
 
-c1 = TestClassInstance.solveForConstants()[0]
-c2 = TestClassInstance.solveForConstants()[1]
+    c1 = TestClassInstance.solveForConstants()[0]
+    c2 = TestClassInstance.solveForConstants()[1]
 
-print_pos = [f'{i:.16f}' for i in TestClassInstance.convertToRobotPose(c1, c2)]
+    #print_pos = [f'{i:.16f}' for i in TestClassInstance.convertToRobotPose(c1, c2)]
 
-print(f'movej({print_pos}, a=1, v=0.1)'.replace("'", ""))
+    print(TestClassInstance.getPickUpPieceCommand())

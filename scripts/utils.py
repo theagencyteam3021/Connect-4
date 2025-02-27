@@ -28,7 +28,7 @@ def formatOnlyColourVals(coordsArray):
 import cv2 as cv
 
 def imageCapture():
-    capture = cv.VideoCapture(0)
+    capture = cv.VideoCapture('/dev/video2')
 
     if not capture.isOpened():
         print("webcam 2 error")
@@ -62,6 +62,7 @@ def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
     ret, frame = capture.read()
 
     if ret:
+        frame = cv.rotate(frame, cv.ROTATE_90_CLOCKWISE)
         cv.imwrite("webcam_photo.jpg", frame)
 
     model = YOLO('best.pt')
@@ -76,6 +77,7 @@ def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
         ret, frame = capture.read()
 
         if ret:
+            frame = cv.rotate(frame, cv.ROTATE_90_CLOCKWISE)
             cv.imwrite("webcam_photo.jpg", frame)
 
         results = model('webcam_photo.jpg')
