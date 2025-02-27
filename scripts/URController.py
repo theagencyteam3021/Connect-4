@@ -88,6 +88,19 @@ class URController:
         #Go back up
         self.sock.send_cmd(f'movej({point}, a=1.3962634015954636, v=1.0471975511965976)')
         time.sleep(2) #TODO tune this time
+
+    def drop_in_plinko(self):
+
+        #Go to reset point for the plinko slot
+        self.sock.send_cmd(f'movej({self.Plinko_Reset_p}, a=1.3962634015954636, v=1.0471975511965976)')
+        time.sleep(5) #TODO tune this time
+        
+        #Go to point above the plinko slot
+        self.sock.send_cmd(f'movej({self.Plinko_Point1_p}, a=1.3962634015954636, v=1.0471975511965976)')
+        time.sleep(5) #TODO tune this time
+
+        self.gripper_close()
+
         
         
         
@@ -104,6 +117,9 @@ class URController:
         self.sock.send_cmd('set_standard_digital_out(1, True)')
         self.sock.send_cmd('set_standard_digital_out(5, True)')
         time.sleep(1) #TODO tune this time
+
+    # this is kinda lazy but i didnt want to mess with setting up server
+    def run_command(self, command):
+        self.sock.send_cmd(command)
+
         
-
-

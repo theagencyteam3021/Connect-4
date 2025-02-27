@@ -1,5 +1,7 @@
 from scripts.board import Board
 
+from scripts.point import Point
+
 from scripts.utils import *
 
 from scripts.gridBoardTest import GridBoardDisplay
@@ -36,22 +38,56 @@ if __name__ == "__main__":
 
     SCREEN_WIDTH = 750
     SCREEN_HEIGHT = 650
+
+    # should be set to the lables used by the algorithm in results
+    REDCOLORNAME = "Red"
+    YELLOWCOLORNAME = "yellow"
+
     controller = URController()
 
     should_loop = ""
+
+    # set ancor coords
+
+    originXInput = input("input x coordinate pixel value for origin marker: ")
+    originYInput = input("input y coordinate pixel value for origin marker: ")
+
+    xXInput = input("input x coordinate pixel value for x marker: ")
+    xYInput = input("input y coordinate pixel value for x marker: ")
+
+    yXInput = input("input x coordinate pixel value for y marker: ")
+    yYInput = input("input y coordinate pixel value for y marker: ")
+
 
     while  should_loop != "quit" and should_loop != "q":
 
         # get image
         # use alg on image to find coords
+        imageCapture()
+        collectionModel = YOLO('.pt')
+
+        collectionResults = collectionModel("piece_return_photo.jpg")
+
         # call vector finder
-        # 
+        collectionPlate = tablePieces(collectionResults, Point(originXInput, originYInput), Point(xXInput, xYInput), Point(yXInput, yYInput))
+
+        # picking piece
+        pieceCoords = collectionPlate.pickPiece(REDCOLORNAME)
+
+        # setting attribute piece
+        collectionPlate.pieceSetter((pieceCoords[0], pieceCoords[1]))
+
+        pickUpPiecePose = collectionPlate.getPickUpPiecePose()
+
+        controller.pick_up_from_plate(pickUpPiecePose)
+
+
 
         screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         
         controller.goto_reset()
         results = getPredictionsUntilValid()
-        stopThreads = True
+        stopThreads = False # value changed just to see what happens
 
         # print(f"DEBUGGING results: \n{results}")
         array = coordFormatFromPredictions(results)
@@ -86,6 +122,30 @@ if __name__ == "__main__":
         controller.drop_in_column(robotMove)
             
         controller.goto_reset()
+
+        # give opponent a piece
+        
+        results = getResults()
+
+        # call vector finder
+        collectionPlate = tablePieces(results, Point(originXInput, originYInput), Point(xXInput, xYInput), Point(yXInput, yYInput))
+
+        # picking piece
+        pieceCoords = collectionPlate.pickPiece(YELLOWCOLORNAME)
+
+        # setting attribute piece
+        collectionPlate.pieceSetter((pieceCoords[0], pieceCoords[1]))
+
+        pickUpPiecePose = collectionPlate.getPickUpPiecePose()
+
+        controller.pick_up_from_plate(pickUpPiecePose)
+
+        controller.drop_in_plinko()
+
+        controller.goto_reset()
+
+
+
         input("Enter to open gripper")
         controller.gripper_open()
         should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")

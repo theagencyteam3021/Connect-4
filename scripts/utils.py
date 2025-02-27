@@ -31,7 +31,7 @@ def imageCapture():
     capture = cv.VideoCapture('/dev/video2')
 
     if not capture.isOpened():
-        print("webcam error")
+        print("webcam 2 error")
 
     capture.set(cv.CAP_PROP_FOURCC,cv.VideoWriter_fourcc('M','J','P','G'))
 
@@ -52,10 +52,10 @@ import time
 
 def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
 
-    capture = cv.VideoCapture(2)
+    capture = cv.VideoCapture(1)
 
     if not capture.isOpened():
-        print("webcam error")
+        print("webcam 1 error")
 
     capture.set(cv.CAP_PROP_FOURCC,cv.VideoWriter_fourcc('M','J','P','G'))
 
