@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
     # yXInput = input("input x coordinate pixel value for y marker: ")
     # yYInput = input("input y coordinate pixel value for y marker: ")
-
+    controller.goto_reset()
 
     while  should_loop != "quit" and should_loop != "q":
 
@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
         screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         
-        controller.goto_reset()
+        
         results = getPredictionsUntilValid()
         stopThreads = False # value changed just to see what happens
 
@@ -110,6 +110,9 @@ if __name__ == "__main__":
         t = threading.Thread(target=worker, args =(lambda : stopThreads, screen, colorOnlyMatrix))
         threads.append(t)
         t.start()
+        
+        pygame.display.update()
+        pygame.event.pump()
 
 
         displayInCLI = TerminalBoard(colorOnlyMatrix)

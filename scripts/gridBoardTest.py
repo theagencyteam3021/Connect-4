@@ -15,6 +15,7 @@ class GridBoardDisplay():
     def run(self, stop=False):
         running = True
         while running:
+            pygame.event.get()
             self.screen.fill((0, 0, 0))
             for row in range(6):
                 for col in range(7):
@@ -30,7 +31,7 @@ class GridBoardDisplay():
                 if event.type == pygame.QUIT:
                     running = False
 
-            pygame.display.update()
+            #pygame.display.update()
             pygame.event.pump()
             if stop:
                 break

@@ -67,10 +67,10 @@ class URController:
     def drop_in_column(self, column_number):
         point = self.board_points[column_number - 1]
         pose = self.board_points[column_number - 1]
-        low_point = low_points[column_number - 1]
+        low_point = self.low_points[column_number - 1]
 
         #Go to point above the correct column
-        self.sock.send_cmd(f'movej({point}, a=1.2, v=0.25)')
+        self.sock.send_cmd(f'movej({point}, a=1.2, v=1.0471975511965976)')
         time.sleep(5) #TODO tune this time
 
         #Go down into the slot
@@ -123,7 +123,7 @@ class URController:
         
         
     def goto_reset(self):
-        self.sock.send_cmd(f'movej({self.Reset_p}, a=1.3962634015954636, v=1.0471975511965976)')
+        self.sock.send_cmd(f'movej({self.Uppiece_p}, a=1.3962634015954636, v=1.0471975511965976)')
         time.sleep(5)
         
     def gripper_open(self):

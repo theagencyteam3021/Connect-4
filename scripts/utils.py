@@ -52,7 +52,7 @@ import time
 
 def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
 
-    capture = cv.VideoCapture(1)
+    capture = cv.VideoCapture('/dev/video1')
 
     if not capture.isOpened():
         print("webcam 1 error")
