@@ -28,7 +28,7 @@ import cv2 as cv
 
 # from PIL import Image
 
-def worker(stop, colorOnlyMatrix):
+def worker(stop, screen, colorOnlyMatrix):
         disp = GridBoardDisplay(screen, colorOnlyMatrix)
         disp.run(stop)
 
@@ -107,7 +107,7 @@ if __name__ == "__main__":
 
         threads = []
         stopThreads = False
-        t = threading.Thread(target=worker, args =(lambda : stopThreads, colorOnlyMatrix))
+        t = threading.Thread(target=worker, args =(lambda : stopThreads, screen, colorOnlyMatrix))
         threads.append(t)
         t.start()
 

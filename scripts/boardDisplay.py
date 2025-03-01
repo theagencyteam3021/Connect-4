@@ -2,11 +2,12 @@
 from scripts.board import Board
 from scripts.line import Line
 from scripts.point import Point
+
 import pygame
 
 
 class BoardDisplay:
-    def __init__(self):
+    def __init__(self, array=[[687.0, 849.0, 'Red'], [870.5, 850.0, 'Red'], [1052.5, 844.5, 'Red'], [1229.0, 836.0, 'Yellow'], [1393.0, 822.5, 'Red'], [1535.0, 806.5, 'Yellow'], [1661.5, 787.5, 'Yellow'], [684.5, 684.5, 'Red'], [867.0, 684.0, 'Red'], [1047.5, 681.5, 'Yellow'], [1223.5, 675.5, 'Red'], [1385.0, 668.5, 'Yellow'], [1528.5, 659.0, 'Yellow'], [1655.5, 648.5, 'Red'], [686.0, 521.0, 'Red'], [863.5, 521.0, 'Yellow'], [1041.0, 519.5, 'Red'], [1214.5, 517.5, 'Red'], [1375.0, 514.5, 'Yellow'], [1517.5, 511.5, 'Red'], [1642.5, 510.0, 'Yellow'], [691.5, 365.5, 'Yellow'], [862.0, 363.5, 'Red'], [1037.0, 365.0, 'Empty'], [1205.5, 365.5, 'Empty'], [1359.5, 368.5, 'Red'], [1500.0, 372.0, 'Empty'], [1625.0, 376.0, 'Empty'], [695.5, 219.5, 'Empty'], [861.5, 216.0, 'Empty'], [1030.5, 219.5, 'Empty'], [1192.0, 223.5, 'Empty'], [1343.5, 229.0, 'Empty'], [1482.0, 238.5, 'Empty'], [1602.0, 249.0, 'Empty'], [703.5, 87.0, 'Empty'], [863.0, 84.0, 'Empty'], [1024.0, 86.5, 'Empty'], [1178.5, 93.0, 'Empty'], [1325.0, 102.0, 'Empty'], [1459.0, 116.0, 'Empty'], [1578.0, 130.0, 'Empty']]):
         pygame.init()
         # pygame setup
         self.screen = pygame.display.set_mode((1920, 1080))
@@ -18,8 +19,8 @@ class BoardDisplay:
         # self.array = self.board.findMatrix()
         # self.corners = self.board.cornerFinder()
 
-        # this is just output copy pasted from main
-        self.array = [[687.0, 849.0, 'Red'], [870.5, 850.0, 'Red'], [1052.5, 844.5, 'Red'], [1229.0, 836.0, 'Yellow'], [1393.0, 822.5, 'Red'], [1535.0, 806.5, 'Yellow'], [1661.5, 787.5, 'Yellow'], [684.5, 684.5, 'Red'], [867.0, 684.0, 'Red'], [1047.5, 681.5, 'Yellow'], [1223.5, 675.5, 'Red'], [1385.0, 668.5, 'Yellow'], [1528.5, 659.0, 'Yellow'], [1655.5, 648.5, 'Red'], [686.0, 521.0, 'Red'], [863.5, 521.0, 'Yellow'], [1041.0, 519.5, 'Red'], [1214.5, 517.5, 'Red'], [1375.0, 514.5, 'Yellow'], [1517.5, 511.5, 'Red'], [1642.5, 510.0, 'Yellow'], [691.5, 365.5, 'Yellow'], [862.0, 363.5, 'Red'], [1037.0, 365.0, 'Empty'], [1205.5, 365.5, 'Empty'], [1359.5, 368.5, 'Red'], [1500.0, 372.0, 'Empty'], [1625.0, 376.0, 'Empty'], [695.5, 219.5, 'Empty'], [861.5, 216.0, 'Empty'], [1030.5, 219.5, 'Empty'], [1192.0, 223.5, 'Empty'], [1343.5, 229.0, 'Empty'], [1482.0, 238.5, 'Empty'], [1602.0, 249.0, 'Empty'], [703.5, 87.0, 'Empty'], [863.0, 84.0, 'Empty'], [1024.0, 86.5, 'Empty'], [1178.5, 93.0, 'Empty'], [1325.0, 102.0, 'Empty'], [1459.0, 116.0, 'Empty'], [1578.0, 130.0, 'Empty']]
+        # this is just output copy pasted from main must be in format [[x, y, color], [...], ...]
+        self.array = array
         self.board = Board(self.array)
         self.corners = self.board.cornerFinder()
         self.matrixedBoard = self.board.findMatrix()
@@ -111,3 +112,6 @@ class BoardDisplay:
             self.clock.tick(60)  # limits FPS to 60
 
         pygame.quit()
+if __name__ == "__main__":
+    test = BoardDisplay()
+    test.run()
