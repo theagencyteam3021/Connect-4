@@ -6,6 +6,8 @@ from scripts.utils import *
 
 from scripts.gridBoardTest import GridBoardDisplay
 
+from scripts.boardDisplay import BoardDisplay
+
 from scripts.TerminalDisplay import TerminalBoard
 
 from alg.connect_4_alg_stolen import pick_best_move
@@ -32,6 +34,10 @@ def worker(stop, screen, colorOnlyMatrix):
         disp = GridBoardDisplay(screen, colorOnlyMatrix)
         disp.run(stop)
 
+def worker2(array):
+        disp2 = BoardDisplay(array)
+        disp2.run()
+
 
         
 if __name__ == "__main__":
@@ -48,6 +54,9 @@ if __name__ == "__main__":
     should_loop = ""
 
     # set anchor coords
+
+    altDisplayChoice = False
+
     pickUpMode = 0
     pickUpModeChoice = input("Manual Mode = 0\nCorner Mode = 1\n AI Mode = 2\n(0, 1, or 2): ")
 
@@ -125,7 +134,12 @@ if __name__ == "__main__":
         t = threading.Thread(target=worker, args =(lambda : stopThreads, screen, colorOnlyMatrix))
         threads.append(t)
         t.start()
-        
+
+        if altDisplayChoice:
+            t2 = threading.Thread(target=worker2, args =(lambda : array))
+            threads.append(t2)
+            t2.start()
+            
         pygame.display.update()
         pygame.event.pump()
 
@@ -144,10 +158,13 @@ if __name__ == "__main__":
         # give opponent a piece
         
         if pickUpModeChoice != "2":
-            results = getResults()
+            imageCapture()
+            collectionModel = YOLO('piece_model.pt')
+
+            collectionResults = collectionModel("piece_return_photo.jpg")
 
             # call vector finder
-            collectionPlate = tablePieces(results, Point(originXInput, originYInput), Point(xXInput, xYInput), Point(yXInput, yYInput))
+            collectionPlate = tablePieces(collectionResults, Point(originXInput, originYInput), Point(xXInput, xYInput), Point(yXInput, yYInput))
 
             # picking piece
             pieceCoords = collectionPlate.pickPiece(YELLOWCOLORNAME)
