@@ -157,7 +157,7 @@ if __name__ == "__main__":
 
         # give opponent a piece
         
-        if pickUpModeChoice != "2":
+        if pickUpModeChoice == "2":
             imageCapture()
             collectionModel = YOLO('piece_model.pt')
 
@@ -176,7 +176,7 @@ if __name__ == "__main__":
 
             controller.pick_up_from_plate(pickUpPiecePose)
 
-        elif pickUpModeChoice != "1":
+        elif pickUpModeChoice == "1":
              controller.pick_up_from_corner()
         
         else:
