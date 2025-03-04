@@ -72,20 +72,20 @@ class URController:
 
         #Go to point above the correct column
         self.sock.send_cmd(f'movej({point}, a=1.2, v=1.0471975511965976)')
-        time.sleep(5) #TODO tune this time
+        time.sleep(3) #TODO tune this time
 
         #Go down into the slot
         self.sock.send_cmd(f'movel({low_point}, a=1.2, v=0.25)')
-        time.sleep(2) #TODO tune this time
+        time.sleep(1) #TODO tune this time
 
         #Drop the piece
         self.sock.send_cmd('set_standard_digital_out(1, False)')
         #self.sock.send_cmd('set_standard_digital_out(5, False)')
-        time.sleep(1) #TODO tune this time
+        time.sleep(0.5) #TODO tune this time
 
         #Go back up
         self.sock.send_cmd(f'movel({point}, a=1.2, v=0.25)')
-        time.sleep(2) #TODO tune this time
+        time.sleep(1) #TODO tune this time
         
     # JM W pick up from point on collection plate
     def pick_up_from_plate(self, point):

@@ -66,7 +66,7 @@ def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
         cv.imwrite("webcam_photo.jpg", frame)
 
     model = YOLO('best.pt')
-    results = model('webcam_photo.jpg')
+    results = model('webcam_photo.jpg', iou=0.2, nms_agnostic = True)
     # model = inference.get_model("connect4-lxv2j/15", "fxXBp7IHZMUOlxGJbueP")
     # results = model.infer(image=image)
     
@@ -80,7 +80,7 @@ def getPredictionsUntilValid(file="webcam_photo.jpg", model=15):
             frame = cv.rotate(frame, cv.ROTATE_90_CLOCKWISE)
             cv.imwrite("webcam_photo.jpg", frame)
 
-        results = model('webcam_photo.jpg')
+        results = model('webcam_photo.jpg', iou=0.2, nms_agnostic = True)
         # results = model.infer(image=image)
 
         time.sleep(0.5)
