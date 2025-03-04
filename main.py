@@ -60,7 +60,7 @@ if __name__ == "__main__":
     pickUpMode = 0
     pickUpModeChoice = input("Manual Mode = 0\nCorner Mode = 1\n AI Mode = 2\n(0, 1, or 2): ")
 
-    if pickUpModeChoice != "1":
+    if pickUpModeChoice == "2":
         originXInput = input("input x coordinate pixel value for origin marker: ")
         originYInput = input("input y coordinate pixel value for origin marker: ")
 
@@ -77,7 +77,7 @@ if __name__ == "__main__":
         # get image
         # use alg on image to find coords
 
-        if pickUpModeChoice != "2":
+        if pickUpModeChoice == "2":
             imageCapture()
             collectionModel = YOLO('piece_model.pt')
 
@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
             controller.pick_up_from_plate(pickUpPiecePose)
 
-        elif pickUpModeChoice != "1":
+        elif pickUpModeChoice == "1":
              controller.pick_up_from_corner()
         
         else:
