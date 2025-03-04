@@ -91,6 +91,7 @@ if __name__ == "__main__":
              controller.pick_up_from_corner()
         
         else:
+            input("Press enter for vacuum.")
             controller.gripper_open()
             input("Press enter once piece is gripped.")
 
@@ -162,17 +163,14 @@ if __name__ == "__main__":
              controller.pick_up_from_corner()
         
         else:
-             controller.gripper_open()
-             input("Press enter once piece is gripped.")
+            input("Press enter for vacuum.")
+            controller.gripper_open()
+            input("Press enter once piece is gripped.")
 
         controller.drop_in_plinko()
 
         controller.goto_reset()
 
-
-
-        input("Enter to open gripper")
-        controller.gripper_open()
         should_loop = input("Press enter to contiue or enter (quit or q) to exit: ")
 
 
