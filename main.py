@@ -91,7 +91,8 @@ if __name__ == "__main__":
              controller.pick_up_from_corner()
         
         else:
-             controller.gripper_open()
+            controller.gripper_open()
+            input("Press enter once piece is gripped.")
 
 
 
@@ -162,6 +163,7 @@ if __name__ == "__main__":
         
         else:
              controller.gripper_open()
+             input("Press enter once piece is gripped.")
 
         controller.drop_in_plinko()
 
