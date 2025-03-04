@@ -56,6 +56,7 @@ class URController:
         self.Setdown_from_p='p[.368189332974, -.420572372214, .386477734558, .757995392526, 1.773716570238, -1.672337576525]'
         self.Setdown_to_p='p[.367920499991, -.425368891837, .339617841601, .829391370564, 1.765682256350, -1.717820716283]'
 
+
         # incomplete: add relative movement to grab piece off plate
         self.Go_Down_To_Grab_p=[]
 
@@ -106,6 +107,27 @@ class URController:
         #Go back up
         self.sock.send_cmd(f'movej({point}, a=1.3962634015954636, v=1.0471975511965976)')
         time.sleep(2) #TODO tune this time
+
+    def pick_up_from_corner(self):
+
+        #go to corner pose
+        self.sock.send_cmd(f'movej({None}, a=1.3962634015954636, v=1.0471975511965976)')
+        time.sleep(5) #TODO tune this time
+
+        #Go down to spot
+        # pose not implemented
+        self.sock.send_cmd(f'movej(pose_add(get_target_tcp_pose(), pose_sub({self.Go_Down_To_Grab_p}, {self.Go_Down_To_Grab_p})), a=1.3962634015954636, v=1.0471975511965976)')
+        time.sleep(2) #TODO tune this time
+
+        #Grab the piece
+        self.sock.send_cmd('set_standard_digital_out(1, True)')
+        #self.sock.send_cmd('set_standard_digital_out(5, True)')
+        time.sleep(1) #TODO tune this time
+
+        #Go up to corner pose
+        self.sock.send_cmd(f'movej({None}, a=1.3962634015954636, v=1.0471975511965976)')
+        time.sleep(2) #TODO tune this time
+
 
     def drop_in_plinko(self):
 

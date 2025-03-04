@@ -40,7 +40,7 @@ if __name__ == "__main__":
     SCREEN_HEIGHT = 650
 
     # should be set to the lables used by the algorithm in results
-    REDCOLORNAME = "Red"
+    REDCOLORNAME = "red"
     YELLOWCOLORNAME = "yellow"
 
     controller = URController()
@@ -48,38 +48,51 @@ if __name__ == "__main__":
     should_loop = ""
 
     # set anchor coords
+    pickUpMode = 0
+    pickUpModeChoice = input("Manual Mode = 0\nCorner Mode = 1\n AI Mode = 2\n(0, 1, or 2): ")
 
-    originXInput = input("input x coordinate pixel value for origin marker: ")
-    originYInput = input("input y coordinate pixel value for origin marker: ")
+    if pickUpModeChoice != "1":
+        originXInput = input("input x coordinate pixel value for origin marker: ")
+        originYInput = input("input y coordinate pixel value for origin marker: ")
 
-    xXInput = input("input x coordinate pixel value for x marker: ")
-    xYInput = input("input y coordinate pixel value for x marker: ")
+        xXInput = input("input x coordinate pixel value for x marker: ")
+        xYInput = input("input y coordinate pixel value for x marker: ")
 
-    yXInput = input("input x coordinate pixel value for y marker: ")
-    yYInput = input("input y coordinate pixel value for y marker: ")
+        yXInput = input("input x coordinate pixel value for y marker: ")
+        yYInput = input("input y coordinate pixel value for y marker: ")
+
     controller.goto_reset()
 
     while  should_loop != "quit" and should_loop != "q":
 
         # get image
         # use alg on image to find coords
-        imageCapture()
-        collectionModel = YOLO('piece_model.pt')
 
-        collectionResults = collectionModel("piece_return_photo.jpg")
+        if pickUpModeChoice != "2":
+            imageCapture()
+            collectionModel = YOLO('piece_model.pt')
 
-        # call vector finder
-        collectionPlate = tablePieces(collectionResults, Point(originXInput, originYInput), Point(xXInput, xYInput), Point(yXInput, yYInput))
+            collectionResults = collectionModel("piece_return_photo.jpg")
 
-        # picking piece
-        pieceCoords = collectionPlate.pickPiece(REDCOLORNAME)
+            # call vector finder
+            collectionPlate = tablePieces(collectionResults, Point(originXInput, originYInput), Point(xXInput, xYInput), Point(yXInput, yYInput))
 
-        # setting attribute piece
-        collectionPlate.pieceSetter((pieceCoords[0], pieceCoords[1]))
+            # picking piece
+            pieceCoords = collectionPlate.pickPiece(REDCOLORNAME)
 
-        pickUpPiecePose = collectionPlate.getPickUpPiecePose()
+            # setting attribute piece
+            collectionPlate.pieceSetter((pieceCoords[0], pieceCoords[1]))
 
-        controller.pick_up_from_plate(pickUpPiecePose)
+            pickUpPiecePose = collectionPlate.getPickUpPiecePose()
+
+            controller.pick_up_from_plate(pickUpPiecePose)
+
+        elif pickUpModeChoice != "1":
+             controller.pick_up_from_corner()
+        
+        else:
+             controller.gripper_open()
+
 
 
 
@@ -128,20 +141,27 @@ if __name__ == "__main__":
 
         # give opponent a piece
         
-        results = getResults()
+        if pickUpModeChoice != "2":
+            results = getResults()
 
-        # call vector finder
-        collectionPlate = tablePieces(results, Point(originXInput, originYInput), Point(xXInput, xYInput), Point(yXInput, yYInput))
+            # call vector finder
+            collectionPlate = tablePieces(results, Point(originXInput, originYInput), Point(xXInput, xYInput), Point(yXInput, yYInput))
 
-        # picking piece
-        pieceCoords = collectionPlate.pickPiece(YELLOWCOLORNAME)
+            # picking piece
+            pieceCoords = collectionPlate.pickPiece(YELLOWCOLORNAME)
 
-        # setting attribute piece
-        collectionPlate.pieceSetter((pieceCoords[0], pieceCoords[1]))
+            # setting attribute piece
+            collectionPlate.pieceSetter((pieceCoords[0], pieceCoords[1]))
 
-        pickUpPiecePose = collectionPlate.getPickUpPiecePose()
+            pickUpPiecePose = collectionPlate.getPickUpPiecePose()
 
-        controller.pick_up_from_plate(pickUpPiecePose)
+            controller.pick_up_from_plate(pickUpPiecePose)
+
+        elif pickUpModeChoice != "1":
+             controller.pick_up_from_corner()
+        
+        else:
+             controller.gripper_open()
 
         controller.drop_in_plinko()
 
